@@ -73,5 +73,67 @@
     "heading": "Page Not Found",
     "message": "Sorry, the page you are looking for does not exist or has been moved.",
     "backHome": "Back to Home"
+  },
+  "history": {
+    "title": "Analysis History",
+    "selected": "{{count}} selected",
+    "selectAllLabel": "Select all loaded history records",
+    "selectAll": "Select All",
+    "deleting": "Deleting",
+    "delete": "Delete",
+    "empty": "No analysis history",
+    "emptyDesc": "After completing your first analysis, results will appear here.",
+    "bottom": "End of list"
+  },
+  "task": {
+    "analyzing": "Analyzing",
+    "waiting": "Waiting",
+    "defaultTitle": "Analysis Task",
+    "processing": "{{count}} in progress",
+    "pending": "{{count}} pending"
+  },
+  "report": {
+    "relatedNews": "Related News",
+    "refresh": "Refresh",
+    "retry": "Retry",
+    "loading": "Loading news...",
+    "noNews": "No related news",
+    "jump": "Open",
+    "fullReport": "Full Analysis Report",
+    "loadingReport": "Loading report...",
+    "loadFailed": "Failed to load report",
+    "dataTrace": "Data Trace",
+    "rawResult": "Raw Analysis Result",
+    "analysisSnapshot": "Analysis Snapshot",
+    "noConclusion": "No conclusion available",
+    "operationAdvice": "Operation Advice",
+    "noAdvice": "No advice available",
+    "trendForecast": "Trend Forecast",
+    "noForecast": "No forecast available",
+    "modelUsed": "Model: {{model}}",
+    "idealBuy": "Ideal Buy",
+    "secondBuy": "Secondary Buy",
+    "stopLoss": "Stop Loss",
+    "takeProfit": "Take Profit",
+    "sniperPoints": "Sniper Points"
+  },
+  "scoreGauge": {
+    "label": "Fear & Greed Index"
+  },
+  "operationBadge": {
+    "reduce": "Reduce",
+    "sell": "Sell",
+    "hold": "Hold",
+    "buy": "Buy",
+    "advice": "Advice"
+  },
+  "chatBadge": {
+    "newMessage": "New message in Chat"
+  },
+  "format": {
+    "reportType": {
+      "simple": "Simple",
+      "detailed": "Standard"
+    }
   }
 }

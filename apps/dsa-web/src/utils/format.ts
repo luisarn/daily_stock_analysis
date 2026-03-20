@@ -1,9 +1,12 @@
+import i18n from '../i18n';
+
 export const formatDateTime = (value?: string): string => {
   if (!value) return '—';
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return value;
 
-  return new Intl.DateTimeFormat('zh-CN', {
+  const locale = i18n.language.startsWith('zh') ? 'zh-CN' : 'en-US';
+  return new Intl.DateTimeFormat(locale, {
     year: 'numeric',
     month: '2-digit',
     day: '2-digit',
@@ -17,7 +20,8 @@ export const formatDate = (value?: string): string => {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return value;
 
-  return new Intl.DateTimeFormat('zh-CN', {
+  const locale = i18n.language.startsWith('zh') ? 'zh-CN' : 'en-US';
+  return new Intl.DateTimeFormat(locale, {
     year: 'numeric',
     month: '2-digit',
     day: '2-digit',
@@ -52,7 +56,7 @@ export const getTodayInShanghai = (): string =>
 
 export const formatReportType = (value?: string): string => {
   if (!value) return '—';
-  if (value === 'simple') return '普通';
-  if (value === 'detailed') return '标准';
+  if (value === 'simple') return i18n.t('format.reportType.simple', { ns: 'common' });
+  if (value === 'detailed') return i18n.t('format.reportType.detailed', { ns: 'common' });
   return value;
 };

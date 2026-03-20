@@ -73,5 +73,67 @@
     "heading": "页面未找到",
     "message": "抱歉，您访问的页面不存在或已被移动",
     "backHome": "返回首页"
+  },
+  "history": {
+    "title": "历史分析",
+    "selected": "已选 {{count}}",
+    "selectAllLabel": "全选当前已加载历史记录",
+    "selectAll": "全选当前",
+    "deleting": "删除中",
+    "delete": "删除",
+    "empty": "暂无历史分析记录",
+    "emptyDesc": "完成首次分析后，这里会保留最近结果。",
+    "bottom": "已到底部"
+  },
+  "task": {
+    "analyzing": "分析中",
+    "waiting": "等待中",
+    "defaultTitle": "分析任务",
+    "processing": "{{count}} 进行中",
+    "pending": "{{count}} 等待中"
+  },
+  "report": {
+    "relatedNews": "相关资讯",
+    "refresh": "刷新",
+    "retry": "重试",
+    "loading": "加载资讯中...",
+    "noNews": "暂无相关资讯",
+    "jump": "跳转",
+    "fullReport": "完整分析报告",
+    "loadingReport": "加载报告中...",
+    "loadFailed": "加载报告失败",
+    "dataTrace": "数据追溯",
+    "rawResult": "原始分析结果",
+    "analysisSnapshot": "分析快照",
+    "noConclusion": "暂无分析结论",
+    "operationAdvice": "操作建议",
+    "noAdvice": "暂无建议",
+    "trendForecast": "趋势预测",
+    "noForecast": "暂无预测",
+    "modelUsed": "分析模型: {{model}}",
+    "idealBuy": "理想买入",
+    "secondBuy": "二次买入",
+    "stopLoss": "止损价位",
+    "takeProfit": "止盈目标",
+    "sniperPoints": "狙击点位"
+  },
+  "scoreGauge": {
+    "label": "恐惧贪婪指数"
+  },
+  "operationBadge": {
+    "reduce": "减仓",
+    "sell": "卖出",
+    "hold": "观望",
+    "buy": "买入",
+    "advice": "建议"
+  },
+  "chatBadge": {
+    "newMessage": "问股有新消息"
+  },
+  "format": {
+    "reportType": {
+      "simple": "普通",
+      "detailed": "标准"
+    }
   }
 }

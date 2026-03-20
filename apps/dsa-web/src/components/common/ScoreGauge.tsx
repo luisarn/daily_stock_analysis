@@ -1,5 +1,6 @@
 import type React from 'react';
 import { useState, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { getSentimentLabel } from '../../types/analysis';
 import { cn } from '../../utils/cn';
 
@@ -59,6 +60,7 @@ export const ScoreGauge: React.FC<ScoreGaugeProps> = ({
     };
   }, [score]);
 
+  const { t } = useTranslation('common');
   const label = getSentimentLabel(score);
 
   // Size configuration for each gauge variant.
@@ -90,7 +92,7 @@ export const ScoreGauge: React.FC<ScoreGaugeProps> = ({
     <div className={cn('flex flex-col items-center', className)}>
       {showLabel && (
         <span className="label-uppercase mb-3 text-secondary-text">
-          恐惧贪婪指数
+          {t('scoreGauge.label')}
         </span>
       )}
 

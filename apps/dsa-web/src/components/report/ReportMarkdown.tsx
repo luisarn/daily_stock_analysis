@@ -1,5 +1,6 @@
 import type React from 'react';
 import { useEffect, useState, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { historyApi } from '../../api/history';
@@ -22,6 +23,7 @@ export const ReportMarkdown: React.FC<ReportMarkdownProps> = ({
   stockCode,
   onClose,
 }) => {
+  const { t } = useTranslation('common');
   const [content, setContent] = useState<string>('');
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -47,7 +49,7 @@ export const ReportMarkdown: React.FC<ReportMarkdownProps> = ({
         }
       } catch (err) {
         if (isMounted) {
-          setError(err instanceof Error ? err.message : '加载报告失败');
+          setError(err instanceof Error ? err.message : t('report.loadFailed'));
         }
       } finally {
         if (isMounted) {
@@ -61,7 +63,7 @@ export const ReportMarkdown: React.FC<ReportMarkdownProps> = ({
     return () => {
       isMounted = false;
     };
-  }, [recordId]);
+  }, [recordId, t]);
 
   return (
     <Drawer isOpen={isOpen} onClose={handleClose} width="max-w-3xl" zIndex={100}>
@@ -74,7 +76,7 @@ export const ReportMarkdown: React.FC<ReportMarkdownProps> = ({
         </div>
         <div>
           <h2 className="text-base font-semibold text-white">{stockName || stockCode}</h2>
-          <p className="text-xs text-muted-text">完整分析报告</p>
+          <p className="text-xs text-muted-text">{t('report.fullReport')}</p>
         </div>
       </div>
 
@@ -82,7 +84,7 @@ export const ReportMarkdown: React.FC<ReportMarkdownProps> = ({
       {isLoading ? (
         <div className="flex flex-col items-center justify-center h-64">
           <div className="w-10 h-10 border-3 border-purple/20 border-t-purple rounded-full animate-spin" />
-          <p className="mt-4 text-secondary-text text-sm">加载报告中...</p>
+          <p className="mt-4 text-secondary-text text-sm">{t('report.loadingReport')}</p>
         </div>
       ) : error ? (
         <div className="flex flex-col items-center justify-center h-64">
@@ -97,7 +99,7 @@ export const ReportMarkdown: React.FC<ReportMarkdownProps> = ({
             onClick={handleClose}
             className="mt-4 px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-sm text-secondary-text transition-colors"
           >
-            关闭
+            {t('close')}
           </button>
         </div>
       ) : (
@@ -135,7 +137,7 @@ export const ReportMarkdown: React.FC<ReportMarkdownProps> = ({
           onClick={handleClose}
           className="px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-sm text-secondary-text hover:text-white transition-colors"
         >
-          关闭
+          {t('close')}
         </button>
       </div>
     </Drawer>

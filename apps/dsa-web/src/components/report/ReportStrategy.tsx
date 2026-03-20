@@ -1,4 +1,5 @@
 import type React from 'react';
+import { useTranslation } from 'react-i18next';
 import type { ReportStrategy as ReportStrategyType } from '../../types/analysis';
 import { Card } from '../common';
 
@@ -39,28 +40,30 @@ const StrategyItem: React.FC<StrategyItemProps> = ({
  * 策略点位区组件 - 终端风格
  */
 export const ReportStrategy: React.FC<ReportStrategyProps> = ({ strategy }) => {
+  const { t } = useTranslation('common');
+
   if (!strategy) {
     return null;
   }
 
   const strategyItems = [
     {
-      label: '理想买入',
+      label: t('report.idealBuy'),
       value: strategy.idealBuy,
       color: '#00ff88', // success
     },
     {
-      label: '二次买入',
+      label: t('report.secondBuy'),
       value: strategy.secondaryBuy,
       color: '#00d4ff', // cyan
     },
     {
-      label: '止损价位',
+      label: t('report.stopLoss'),
       value: strategy.stopLoss,
       color: '#ff4466', // danger
     },
     {
-      label: '止盈目标',
+      label: t('report.takeProfit'),
       value: strategy.takeProfit,
       color: '#ffaa00', // warning
     },
@@ -70,7 +73,7 @@ export const ReportStrategy: React.FC<ReportStrategyProps> = ({ strategy }) => {
     <Card variant="bordered" padding="md">
       <div className="mb-3 flex items-baseline gap-2">
         <span className="label-uppercase">STRATEGY POINTS</span>
-        <h3 className="text-base font-semibold text-white">狙击点位</h3>
+        <h3 className="text-base font-semibold text-white">{t('report.sniperPoints')}</h3>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {strategyItems.map((item) => (

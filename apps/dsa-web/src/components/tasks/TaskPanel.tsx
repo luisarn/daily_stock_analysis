@@ -1,4 +1,5 @@
 import type React from 'react';
+import { useTranslation } from 'react-i18next';
 import type { TaskInfo } from '../../types/analysis';
 
 /**
@@ -12,6 +13,7 @@ interface TaskItemProps {
  * 单个任务项
  */
 const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
+  const { t } = useTranslation('common');
   const isPending = task.status === 'pending';
   const isProcessing = task.status === 'processing';
 
@@ -75,7 +77,7 @@ const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
               : 'bg-white/10 text-muted-text'
           }`}
         >
-          {isProcessing ? '分析中' : '等待中'}
+          {isProcessing ? t('task.analyzing') : t('task.waiting')}
         </span>
       </div>
     </div>
@@ -103,9 +105,12 @@ interface TaskPanelProps {
 export const TaskPanel: React.FC<TaskPanelProps> = ({
   tasks,
   visible = true,
-  title = '分析任务',
+  title,
   className = '',
 }) => {
+  const { t } = useTranslation('common');
+  const panelTitle = title ?? t('task.defaultTitle');
+
   // 筛选活跃任务（pending 和 processing）
   const activeTasks = tasks.filter(
     (t) => t.status === 'pending' || t.status === 'processing'
@@ -132,17 +137,17 @@ export const TaskPanel: React.FC<TaskPanelProps> = ({
               d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
             />
           </svg>
-          <span className="text-sm font-medium text-white">{title}</span>
+          <span className="text-sm font-medium text-white">{panelTitle}</span>
         </div>
         <div className="flex items-center gap-2 text-xs text-muted-text">
           {processingCount > 0 && (
             <span className="flex items-center gap-1">
               <span className="w-1.5 h-1.5 bg-cyan rounded-full animate-pulse" />
-              {processingCount} 进行中
+              {t('task.processing', { count: processingCount })}
             </span>
           )}
           {pendingCount > 0 && (
-            <span>{pendingCount} 等待中</span>
+            <span>{t('task.pending', { count: pendingCount })}</span>
           )}
         </div>
       </div>

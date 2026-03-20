@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import type { AnalysisResult, AnalysisReport } from '../../types/analysis';
 import { ReportOverview } from './ReportOverview';
 import { ReportStrategy } from './ReportStrategy';
@@ -18,6 +19,8 @@ export const ReportSummary: React.FC<ReportSummaryProps> = ({
   data,
   isHistory = false,
 }) => {
+  const { t } = useTranslation('common');
+
   // 兼容 AnalysisResult 和 AnalysisReport 两种数据格式
   const report: AnalysisReport = 'report' in data ? data.report : data;
   // 使用 report id，因为 queryId 在批量分析时可能重复，且历史报告详情接口需要 recordId 来获取关联资讯和详情数据
@@ -50,7 +53,7 @@ export const ReportSummary: React.FC<ReportSummaryProps> = ({
       {/* 分析模型标记（Issue #528）— 报告末尾 */}
       {shouldShowModel && (
         <p className="px-1 text-xs text-muted-text">
-          分析模型: {modelUsed}
+          {t('report.modelUsed', { model: modelUsed })}
         </p>
       )}
     </div>

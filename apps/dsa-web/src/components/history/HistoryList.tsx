@@ -1,5 +1,6 @@
 import type React from 'react';
 import { useRef, useCallback, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import type { HistoryItem } from '../../types/analysis';
 import { getSentimentColor } from '../../types/analysis';
 import { formatDateTime } from '../../utils/format';
@@ -40,6 +41,7 @@ export const HistoryList: React.FC<HistoryListProps> = ({
   onDeleteSelected,
   className = '',
 }) => {
+  const { t } = useTranslation('common');
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const loadMoreTriggerRef = useRef<HTMLDivElement>(null);
   const selectAllRef = useRef<HTMLInputElement>(null);
@@ -86,21 +88,21 @@ export const HistoryList: React.FC<HistoryListProps> = ({
   const getOperationBadgeLabel = (advice?: string) => {
     const normalized = advice?.trim();
     if (!normalized) {
-      return '情绪';
+      return t('operationBadge.advice');
     }
-    if (normalized.includes('减仓')) {
-      return '减仓';
+    if (normalized.includes('减仓') || normalized.includes('情绪')) {
+      return t('operationBadge.reduce');
     }
     if (normalized.includes('卖')) {
-      return '卖出';
+      return t('operationBadge.sell');
     }
     if (normalized.includes('观望') || normalized.includes('等待')) {
-      return '观望';
+      return t('operationBadge.hold');
     }
     if (normalized.includes('买') || normalized.includes('布局')) {
-      return '买入';
+      return t('operationBadge.buy');
     }
-    return normalized.split(/[，。；、\s]/)[0] || '建议';
+    return t('operationBadge.advice');
   };
 
   return (
@@ -116,11 +118,11 @@ export const HistoryList: React.FC<HistoryListProps> = ({
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              历史分析
+              {t('history.title')}
             </h2>
             {selectedCount > 0 && (
               <Badge variant="history" size="sm" className="animate-in fade-in zoom-in duration-200">
-                已选 {selectedCount}
+                {t('history.selected', { count: selectedCount })}
               </Badge>
             )}
           </div>
@@ -134,10 +136,10 @@ export const HistoryList: React.FC<HistoryListProps> = ({
                   checked={allVisibleSelected}
                   onChange={onToggleSelectAll}
                   disabled={isDeleting}
-                  aria-label="全选当前已加载历史记录"
+                  aria-label={t('history.selectAllLabel')}
                   className="w-3.5 h-3.5 rounded border-white/20 bg-transparent text-purple focus:ring-purple/40 cursor-pointer disabled:opacity-50"
                 />
-                <span className="text-[11px] text-muted-text select-none">全选当前</span>
+                <span className="text-[11px] text-muted-text select-none">{t('history.selectAll')}</span>
               </div>
               <Button
                 variant="danger"
@@ -147,7 +149,7 @@ export const HistoryList: React.FC<HistoryListProps> = ({
                 isLoading={isDeleting}
                 className="h-6 text-[9px] px-2"
               >
-                {isDeleting ? '删除中' : '删除'}
+                {isDeleting ? t('history.deleting') : t('history.delete')}
               </Button>
             </div>
           )}
@@ -165,8 +167,8 @@ export const HistoryList: React.FC<HistoryListProps> = ({
               </svg>
             </div>
             <div className="space-y-1">
-              <p className="text-sm text-secondary-text">暂无历史分析记录</p>
-              <p className="text-xs text-muted-text">完成首次分析后，这里会保留最近结果。</p>
+              <p className="text-sm text-secondary-text">{t('history.empty')}</p>
+              <p className="text-xs text-muted-text">{t('history.emptyDesc')}</p>
             </div>
           </div>
         ) : (
@@ -186,7 +188,7 @@ export const HistoryList: React.FC<HistoryListProps> = ({
                   type="button"
                   onClick={() => onItemClick(item.id)}
                   className={`flex-1 text-left p-2.5 rounded-xl transition-all duration-200 border relative overflow-hidden group/item ${
-                    selectedId === item.id 
+                    selectedId === item.id
                       ? 'bg-purple/10 border-purple/30 border-cyan shadow-[0_0_15px_rgba(111,97,241,0.15)]'
                       : 'bg-white/5 border-transparent hover:bg-white/10 hover:border-white/10'
                   }`}
@@ -196,11 +198,11 @@ export const HistoryList: React.FC<HistoryListProps> = ({
                   </div>
                   <div className="flex items-center gap-2.5 relative z-10">
                     {item.sentimentScore !== undefined && (
-                      <div 
+                      <div
                         className="w-1 h-8 rounded-full flex-shrink-0"
-                        style={{ 
+                        style={{
                           backgroundColor: getSentimentColor(item.sentimentScore),
-                          boxShadow: `0 0 10px ${getSentimentColor(item.sentimentScore)}40` 
+                          boxShadow: `0 0 10px ${getSentimentColor(item.sentimentScore)}40`
                         }}
                       />
                     )}
@@ -212,9 +214,9 @@ export const HistoryList: React.FC<HistoryListProps> = ({
                           </span>
                         </div>
                         {item.sentimentScore !== undefined && (
-                          <span 
+                          <span
                             className="shrink-0 rounded-full border px-2 py-0.5 text-[11px] font-semibold leading-none"
-                            style={{ 
+                            style={{
                               color: getSentimentColor(item.sentimentScore),
                               borderColor: `${getSentimentColor(item.sentimentScore)}30`,
                               backgroundColor: `${getSentimentColor(item.sentimentScore)}10`
@@ -240,7 +242,7 @@ export const HistoryList: React.FC<HistoryListProps> = ({
             ))}
 
             <div ref={loadMoreTriggerRef} className="h-4" />
-            
+
             {isLoadingMore && (
               <div className="flex justify-center py-4">
                 <div className="w-5 h-5 border-2 border-cyan/10 border-t-cyan rounded-full animate-spin" />
@@ -250,7 +252,7 @@ export const HistoryList: React.FC<HistoryListProps> = ({
             {!hasMore && items.length > 0 && (
               <div className="text-center py-5">
                 <div className="h-px bg-white/5 w-full mb-3" />
-                <span className="text-[10px] text-muted-text/50 uppercase tracking-[0.2em]">已到底部</span>
+                <span className="text-[10px] text-muted-text/50 uppercase tracking-[0.2em]">{t('history.bottom')}</span>
               </div>
             )}
           </div>

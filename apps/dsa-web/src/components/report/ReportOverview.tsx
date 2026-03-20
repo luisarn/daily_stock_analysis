@@ -1,4 +1,5 @@
 import type React from 'react';
+import { useTranslation } from 'react-i18next';
 import type { ReportMeta, ReportSummary as ReportSummaryType } from '../../types/analysis';
 import { ScoreGauge, Card } from '../common';
 import { formatDateTime } from '../../utils/format';
@@ -16,6 +17,8 @@ export const ReportOverview: React.FC<ReportOverviewProps> = ({
   meta,
   summary
 }) => {
+  const { t } = useTranslation('common');
+
   // 根据涨跌幅获取颜色
   const getPriceChangeColor = (changePct: number | undefined): string => {
     if (changePct === undefined || changePct === null) return 'text-muted-text';
@@ -75,7 +78,7 @@ export const ReportOverview: React.FC<ReportOverviewProps> = ({
             <div className="border-t border-white/5 pt-5">
               <span className="label-uppercase">KEY INSIGHTS</span>
               <p className="mt-2 whitespace-pre-wrap text-left text-[15px] leading-7 text-white max-w-[62ch]">
-                {summary.analysisSummary || '暂无分析结论'}
+                {summary.analysisSummary || t('report.noConclusion')}
               </p>
             </div>
           </Card>
@@ -91,9 +94,9 @@ export const ReportOverview: React.FC<ReportOverviewProps> = ({
                   </svg>
                 </div>
                 <div className="space-y-1.5">
-                  <h4 className="text-[11px] font-medium uppercase tracking-[0.16em] text-success">操作建议</h4>
+                  <h4 className="text-[11px] font-medium uppercase tracking-[0.16em] text-success">{t('report.operationAdvice')}</h4>
                   <p className="text-sm leading-6 text-white">
-                    {summary.operationAdvice || '暂无建议'}
+                    {summary.operationAdvice || t('report.noAdvice')}
                   </p>
                 </div>
               </div>
@@ -108,9 +111,9 @@ export const ReportOverview: React.FC<ReportOverviewProps> = ({
                   </svg>
                 </div>
                 <div className="space-y-1.5">
-                  <h4 className="text-[11px] font-medium uppercase tracking-[0.16em] text-warning">趋势预测</h4>
+                  <h4 className="text-[11px] font-medium uppercase tracking-[0.16em] text-warning">{t('report.trendForecast')}</h4>
                   <p className="text-sm leading-6 text-white">
-                    {summary.trendPrediction || '暂无预测'}
+                    {summary.trendPrediction || t('report.noForecast')}
                   </p>
                 </div>
               </div>
