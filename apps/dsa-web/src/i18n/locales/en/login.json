@@ -1,0 +1,29 @@
+{
+  "title": "Login - DSA",
+  "firstTimeSetup": "Set Initial Password",
+  "pageTitle": "Administrator Login",
+  "description": {
+    "firstTime": "First-time authentication setup. Please set an administrator password for the system workspace.",
+    "normal": "Valid credentials are required to access the DSA Quantitative Decision Engine."
+  },
+  "fields": {
+    "passwordFirstTime": "Administrator Password",
+    "password": "Password",
+    "passwordPlaceholder": "Set a password of at least 6 characters",
+    "loginPlaceholder": "Enter your password",
+    "confirmPassword": "Confirm Password",
+    "confirmPlaceholder": "Re-enter administrator password"
+  },
+  "buttons": {
+    "settingUp": "Initializing...",
+    "connecting": "Establishing connection...",
+    "setupAndLogin": "Complete Setup & Login",
+    "login": "Authorize & Enter Workspace"
+  },
+  "errors": {
+    "setupFailed": "Setup Failed",
+    "authFailed": "Authentication Failed",
+    "passwordMismatch": "Passwords do not match"
+  },
+  "footer": "DSA v3 · Quantitative Engine · Protected Workspace"
+}

@@ -1,0 +1,29 @@
+{
+  "title": "登录 - DSA",
+  "firstTimeSetup": "设置初始密码",
+  "pageTitle": "管理员登录",
+  "description": {
+    "firstTime": "首次启用认证，请为系统工作台设置管理员密码。",
+    "normal": "访问 DSA 量化决策引擎需要有效的身份凭证。"
+  },
+  "fields": {
+    "passwordFirstTime": "管理员密码",
+    "password": "登录密码",
+    "passwordPlaceholder": "请设置 6 位以上密码",
+    "loginPlaceholder": "请输入密码",
+    "confirmPassword": "确认密码",
+    "confirmPlaceholder": "再次确认管理员密码"
+  },
+  "buttons": {
+    "settingUp": "初始化中...",
+    "connecting": "正在建立连接...",
+    "setupAndLogin": "完成设置并登录",
+    "login": "授权进入工作台"
+  },
+  "errors": {
+    "setupFailed": "配置失败",
+    "authFailed": "验证未通过",
+    "passwordMismatch": "两次输入的密码不一致"
+  },
+  "footer": "DSA v3 · Quantitative Engine · Protected Workspace"
+}
