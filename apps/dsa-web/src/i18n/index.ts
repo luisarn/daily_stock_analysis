@@ -14,14 +14,16 @@ import enSettings from './locales/en/settings.json';
 import zhSettings from './locales/zh/settings.json';
 import enChat from './locales/en/chat.json';
 import zhChat from './locales/zh/chat.json';
+import enPortfolio from './locales/en/portfolio.json';
+import zhPortfolio from './locales/zh/portfolio.json';
 
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     resources: {
-      en: { common: enCommon, home: enHome, backtest: enBacktest, login: enLogin, settings: enSettings, chat: enChat },
-      zh: { common: zhCommon, home: zhHome, backtest: zhBacktest, login: zhLogin, settings: zhSettings, chat: zhChat },
+      en: { common: enCommon, home: enHome, backtest: enBacktest, login: enLogin, settings: enSettings, chat: enChat, portfolio: enPortfolio },
+      zh: { common: zhCommon, home: zhHome, backtest: zhBacktest, login: zhLogin, settings: zhSettings, chat: zhChat, portfolio: zhPortfolio },
     },
     fallbackLng: 'zh',
     interpolation: { escapeValue: false },

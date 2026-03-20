@@ -1,0 +1,190 @@
+{
+  "title": "Portfolio Analysis - DSA",
+  "pageTitle": "Portfolio Management",
+  "pageSubtitle": "Portfolio snapshot, manual entry, CSV import, and risk analysis (supports full portfolio / single account view)",
+  "brokerWarning": {
+    "empty": "Broker list API returned empty, falling back to built-in broker list (Huatai / CITIC / CMB).",
+    "unavailable": "Broker list API unavailable, falling back to built-in broker list (Huatai / CITIC / CMB)."
+  },
+  "riskWarning": "Risk module degraded: {{message}}",
+  "writeWarning": "Notice: {{message}}",
+  "writeWarning_selectAccount": "Please select a specific account in the top-right before submitting entries or imports.",
+  "writeWarning_selectAccountForDelete": "Please select a specific account in the top-right before deleting records.",
+  "accountView": "Account View",
+  "allAccounts": "All Accounts",
+  "costMethod": "Cost Method",
+  "costMethods": {
+    "fifo": "First In First Out (FIFO)",
+    "avg": "Average Cost (AVG)"
+  },
+  "createAccount": {
+    "title": "Create Account",
+    "hideButton": "Collapse",
+    "autoSwitch": "Will auto-switch to the new account after creation",
+    "namePlaceholder": "Account name (required)",
+    "brokerPlaceholder": "Broker (optional, e.g. Demo / Huatai)",
+    "currencyPlaceholder": "Base currency (e.g. CNY / USD / HKD)",
+    "markets": {
+      "cn": "Market: A-Shares (cn)",
+      "hk": "Market: HK Stocks (hk)",
+      "us": "Market: US Stocks (us)"
+    },
+    "submit": "Create Account",
+    "submitting": "Creating...",
+    "errorNameEmpty": "Account name cannot be empty.",
+    "successMessage": "Account created successfully. Switched to the new account.",
+    "errorDefault": "Failed to create account. Please try again later."
+  },
+  "refresh": {
+    "loading": "Refreshing...",
+    "label": "Refresh Data"
+  },
+  "showCreate": "New Account",
+  "hideCreate": "Collapse",
+  "noAccounts": "No accounts found. Please create an account before entering trades or importing CSV.",
+  "riskWarningLabel": "Risk data unavailable; displaying snapshot data only.",
+  "writeWarningLabel": "Notice",
+  "stats": {
+    "totalEquity": "Total Equity",
+    "totalMarketValue": "Total Market Value",
+    "totalCash": "Total Cash",
+    "fxStatus": "FX Status",
+    "fxStale": "Stale",
+    "fxFresh": "Live"
+  },
+  "positions": {
+    "title": "Positions",
+    "count": "{{count}} items",
+    "empty": "No positions data",
+    "headers": {
+      "account": "Account",
+      "symbol": "Symbol",
+      "quantity": "Quantity",
+      "avgCost": "Avg Cost",
+      "lastPrice": "Last Price",
+      "marketValue": "Market Value",
+      "unrealizedPnl": "Unrealized P&L"
+    }
+  },
+  "concentration": {
+    "industry": "Industry Concentration",
+    "stock": "Industry data unavailable; showing stock concentration instead",
+    "empty": "No concentration data",
+    "dimension": "View: {{mode}}",
+    "dimensionSector": "Industry",
+    "dimensionPosition": "Stock (fallback)",
+    "sectorAlert": "Sector alert: {{alert}}",
+    "top1Weight": "Top1 weight: {{weight}}",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "allAccountsWarning": "You are in the \"All Accounts\" view. To avoid accidental writes, please select a specific account before entering data or submitting a CSV.",
+  "risk": {
+    "drawdown": {
+      "title": "Drawdown Monitor",
+      "max": "Max drawdown: {{value}}",
+      "current": "Current drawdown: {{value}}",
+      "alert": "Alert: {{value}}"
+    },
+    "stopLoss": {
+      "title": "Stop-Loss Alert",
+      "triggered": "Triggered: {{count}}",
+      "near": "Near stop: {{count}}",
+      "alert": "Alert: {{value}}"
+    },
+    "scope": {
+      "title": "Scope",
+      "accountCount": "Accounts: {{count}}",
+      "currency": "Base currency: {{value}}",
+      "costMethod": "Cost method: {{value}}"
+    }
+  },
+  "trade": {
+    "title": "Manual Entry: Trade",
+    "symbolPlaceholder": "Stock symbol (e.g. 600519)",
+    "buy": "Buy",
+    "sell": "Sell",
+    "quantityPlaceholder": "Quantity (required)",
+    "pricePlaceholder": "Price (required)",
+    "feePlaceholder": "Commission (optional)",
+    "taxPlaceholder": "Tax (optional)",
+    "hint": "Commission and tax can be left blank; the system will treat them as 0.",
+    "submit": "Submit Trade"
+  },
+  "cash": {
+    "title": "Manual Entry: Cash Flow",
+    "inflow": "Inflow",
+    "outflow": "Outflow",
+    "amountPlaceholder": "Amount",
+    "currencyPlaceholder": "Currency (optional, default {{currency}})",
+    "submit": "Submit Cash Flow"
+  },
+  "corporate": {
+    "title": "Manual Entry: Corporate Action",
+    "symbolPlaceholder": "Stock symbol",
+    "cashDividend": "Cash Dividend",
+    "splitAdjustment": "Split Adjustment",
+    "dividendPerSharePlaceholder": "Dividend per share",
+    "splitRatioPlaceholder": "Split ratio",
+    "submit": "Submit Corporate Action"
+  },
+  "csv": {
+    "title": "Broker CSV Import",
+    "selectFile": "Select CSV",
+    "dryRun": "Dry run (no write)",
+    "parse": "Parse File",
+    "parsing": "Parsing...",
+    "commit": "Submit Import",
+    "committing": "Submitting...",
+    "parseResult": "Parse result: {{valid}} valid, {{skipped}} skipped, {{error}} errors",
+    "commitResult": "Commit result: {{inserted}} inserted, {{duplicate}} duplicates, {{failed}} failed"
+  },
+  "events": {
+    "title": "Event Log",
+    "tabs": {
+      "trade": "Trades",
+      "cash": "Cash Flows",
+      "corporate": "Corporate Actions"
+    },
+    "refresh": "Refresh Events",
+    "refreshing": "Loading...",
+    "filters": {
+      "symbol": "Filter by symbol",
+      "allSides": "All sides",
+      "allDirections": "All directions",
+      "allActions": "All action types"
+    },
+    "pagination": {
+      "page": "Page {{page}} / {{total}}",
+      "prev": "Previous",
+      "next": "Next"
+    },
+    "deleteHint": "If there are erroneous records, delete them and re-enter.",
+    "correctionHint": "Delete is only available in single-account view. Please select a specific account before deleting records.",
+    "empty": "No events",
+    "deleteButton": "Delete"
+  },
+  "deleteConfirm": {
+    "title": "Delete Record",
+    "message": "Are you sure you want to delete this record?",
+    "confirm": "Confirm Delete",
+    "confirming": "Deleting..."
+  },
+  "labels": {
+    "buy": "Buy",
+    "sell": "Sell",
+    "inflow": "Inflow",
+    "outflow": "Outflow",
+    "cashDividend": "Cash Dividend",
+    "splitAdjustment": "Split Adjustment"
+  },
+  "fallbackBrokers": {
+    "huatai": "Huatai",
+    "citic": "CITIC",
+    "cmb": "CMB"
+  },
+  "deleteTradeMessage": "Confirm delete {{side}} record on {{date}} for {{symbol}} (qty {{quantity}}, price {{price}})?",
+  "deleteCashMessage": "Confirm delete cash flow on {{date}} ({{direction}} {{amount}} {{currency}})?",
+  "deleteCorporateMessage": "Confirm delete corporate action on {{date}}: {{action}} ({{symbol}})?",
+  "cancel": "Cancel"
+}

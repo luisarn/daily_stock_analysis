@@ -1,0 +1,190 @@
+{
+  "title": "持仓分析 - DSA",
+  "pageTitle": "持仓管理",
+  "pageSubtitle": "组合快照、手工录入、CSV 导入与风险分析（支持全组合 / 单账户切换）",
+  "brokerWarning": {
+    "empty": "券商列表接口返回为空，已回退为内置券商列表（华泰/中信/招商）。",
+    "unavailable": "券商列表接口不可用，已回退为内置券商列表（华泰/中信/招商）。"
+  },
+  "riskWarning": "风险模块降级：{{message}}",
+  "writeWarning": "操作提示：{{message}}",
+  "writeWarning_selectAccount": "请先在右上角选择具体账户，再进行录入或导入提交。",
+  "writeWarning_selectAccountForDelete": "请先在右上角选择具体账户，再进行删除修正。",
+  "accountView": "账户视图",
+  "allAccounts": "全部账户",
+  "costMethod": "成本口径",
+  "costMethods": {
+    "fifo": "先进先出（FIFO）",
+    "avg": "均价成本（AVG）"
+  },
+  "createAccount": {
+    "title": "新建账户",
+    "hideButton": "收起",
+    "autoSwitch": "创建后自动切换到该账户",
+    "namePlaceholder": "账户名称（必填）",
+    "brokerPlaceholder": "券商（可选，如 Demo/华泰）",
+    "currencyPlaceholder": "基准币（如 CNY/USD/HKD）",
+    "markets": {
+      "cn": "市场：A 股（cn）",
+      "hk": "市场：港股（hk）",
+      "us": "市场：美股（us）"
+    },
+    "submit": "创建账户",
+    "submitting": "创建中...",
+    "errorNameEmpty": "账户名称不能为空。",
+    "successMessage": "账户创建成功，已自动切换到该账户。",
+    "errorDefault": "创建账户失败，请稍后重试。"
+  },
+  "refresh": {
+    "loading": "刷新中...",
+    "label": "刷新数据"
+  },
+  "showCreate": "新建账户",
+  "hideCreate": "收起新建",
+  "noAccounts": "还没有可用账户，请先创建账户后再录入交易或导入 CSV。",
+  "riskWarningLabel": "风险数据获取失败，已降级为仅展示快照数据。",
+  "writeWarningLabel": "操作提示",
+  "stats": {
+    "totalEquity": "总权益",
+    "totalMarketValue": "总市值",
+    "totalCash": "总现金",
+    "fxStatus": "汇率状态",
+    "fxStale": "过期",
+    "fxFresh": "最新"
+  },
+  "positions": {
+    "title": "持仓明细",
+    "count": "共 {{count}} 项",
+    "empty": "当前无持仓数据",
+    "headers": {
+      "account": "账户",
+      "symbol": "代码",
+      "quantity": "数量",
+      "avgCost": "均价",
+      "lastPrice": "现价",
+      "marketValue": "市值",
+      "unrealizedPnl": "未实现盈亏"
+    }
+  },
+  "concentration": {
+    "industry": "行业集中度分布",
+    "stock": "行业数据暂不可用，当前展示个股集中度",
+    "empty": "暂无集中度数据",
+    "dimension": "展示口径: {{mode}}",
+    "dimensionSector": "行业维度",
+    "dimensionPosition": "个股维度（降级显示）",
+    "sectorAlert": "板块集中度告警: {{alert}}",
+    "top1Weight": "Top1 权重: {{weight}}",
+    "yes": "是",
+    "no": "否"
+  },
+  "allAccountsWarning": "当前处于「全部账户」视图。为避免误写，请先选择一个具体账户后再进行手工录入或 CSV 提交。",
+  "risk": {
+    "drawdown": {
+      "title": "回撤监控",
+      "max": "最大回撤: {{value}}",
+      "current": "当前回撤: {{value}}",
+      "alert": "告警: {{value}}"
+    },
+    "stopLoss": {
+      "title": "止损接近预警",
+      "triggered": "触发数: {{count}}",
+      "near": "接近数: {{count}}",
+      "alert": "告警: {{value}}"
+    },
+    "scope": {
+      "title": "口径",
+      "accountCount": "账户数: {{count}}",
+      "currency": "计价币种: {{value}}",
+      "costMethod": "成本法: {{value}}"
+    }
+  },
+  "trade": {
+    "title": "手工录入：交易",
+    "symbolPlaceholder": "股票代码（例如 600519）",
+    "buy": "买入",
+    "sell": "卖出",
+    "quantityPlaceholder": "数量（必填）",
+    "pricePlaceholder": "成交价（必填）",
+    "feePlaceholder": "手续费（可选）",
+    "taxPlaceholder": "税费（可选）",
+    "hint": "手续费和税费可留空，系统将按 0 处理。",
+    "submit": "提交交易"
+  },
+  "cash": {
+    "title": "手工录入：资金流水",
+    "inflow": "流入",
+    "outflow": "流出",
+    "amountPlaceholder": "金额",
+    "currencyPlaceholder": "币种（可选，默认 {{currency}}）",
+    "submit": "提交资金流水"
+  },
+  "corporate": {
+    "title": "手工录入：公司行为",
+    "symbolPlaceholder": "股票代码",
+    "cashDividend": "现金分红",
+    "splitAdjustment": "拆并股调整",
+    "dividendPerSharePlaceholder": "每股分红",
+    "splitRatioPlaceholder": "拆并股比例",
+    "submit": "提交企业行为"
+  },
+  "csv": {
+    "title": "券商 CSV 导入",
+    "selectFile": "选择 CSV",
+    "dryRun": "仅预演（不写入）",
+    "parse": "解析文件",
+    "parsing": "解析中...",
+    "commit": "提交导入",
+    "committing": "提交中...",
+    "parseResult": "解析结果：有效 {{valid}} 条，跳过 {{skipped}} 条，错误 {{error}} 条",
+    "commitResult": "提交结果：写入 {{inserted}} 条，重复 {{duplicate}} 条，失败 {{failed}} 条"
+  },
+  "events": {
+    "title": "事件记录",
+    "tabs": {
+      "trade": "交易流水",
+      "cash": "资金流水",
+      "corporate": "公司行为"
+    },
+    "refresh": "刷新流水",
+    "refreshing": "加载中...",
+    "filters": {
+      "symbol": "按股票代码筛选",
+      "allSides": "全部买卖方向",
+      "allDirections": "全部资金方向",
+      "allActions": "全部公司行为"
+    },
+    "pagination": {
+      "page": "第 {{page}} / {{total}} 页",
+      "prev": "上一页",
+      "next": "下一页"
+    },
+    "deleteHint": "如有错误流水，可直接删除后重新录入。",
+    "correctionHint": "删除修正仅在单账户视图可用。请先选择具体账户后再删除错误流水。",
+    "empty": "暂无流水",
+    "deleteButton": "删除"
+  },
+  "deleteConfirm": {
+    "title": "删除错误流水",
+    "message": "确认删除这条流水吗？",
+    "confirm": "确认删除",
+    "confirming": "删除中..."
+  },
+  "labels": {
+    "buy": "买入",
+    "sell": "卖出",
+    "inflow": "流入",
+    "outflow": "流出",
+    "cashDividend": "现金分红",
+    "splitAdjustment": "拆并股调整"
+  },
+  "fallbackBrokers": {
+    "huatai": "华泰",
+    "citic": "中信",
+    "cmb": "招商"
+  },
+  "deleteTradeMessage": "确认删除 {{date}} 的{{side}}流水 {{symbol}}（数量 {{quantity}}，价格 {{price}}）吗？",
+  "deleteCashMessage": "确认删除 {{date}} 的资金流水（{{direction}} {{amount}} {{currency}}）吗？",
+  "deleteCorporateMessage": "确认删除 {{date}} 的公司行为 {{action}}（{{symbol}}）吗？",
+  "cancel": "取消"
+}
