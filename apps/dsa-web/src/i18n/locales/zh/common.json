@@ -1,0 +1,77 @@
+{
+  "retry": "重试",
+  "cancel": "取消",
+  "confirm": "确认",
+  "delete": "删除",
+  "deleting": "删除中...",
+  "save": "保存",
+  "close": "关闭",
+  "loading": "加载中...",
+  "appName": "DSA",
+  "nav": {
+    "home": "首页",
+    "chat": "问股",
+    "portfolio": "持仓",
+    "backtest": "回测",
+    "settings": "设置",
+    "openMenu": "打开导航菜单",
+    "desktopNav": "桌面侧边导航",
+    "navMenu": "导航菜单",
+    "mainNav": "主导航",
+    "expandSidebar": "展开侧边栏",
+    "collapseSidebar": "折叠侧边栏"
+  },
+  "logout": {
+    "button": "退出",
+    "title": "退出登录",
+    "message": "确认退出当前登录状态吗？退出后需要重新输入密码。",
+    "confirm": "确认退出"
+  },
+  "confirmDialog": {
+    "confirm": "确定",
+    "cancel": "取消"
+  },
+  "button": {
+    "processing": "处理中..."
+  },
+  "loadingLabel": "正在加载",
+  "selectPlaceholder": "请选择",
+  "passwordToggle": {
+    "hide": "隐藏内容",
+    "show": "显示内容",
+    "hideTitle": "隐藏",
+    "showTitle": "显示"
+  },
+  "jsonViewer": {
+    "empty": "暂无数据",
+    "copy": "复制",
+    "copied": "已复制!"
+  },
+  "drawer": {
+    "closeAriaLabel": "关闭抽屉"
+  },
+  "apiError": {
+    "dismiss": "关闭",
+    "viewDetails": "查看详情"
+  },
+  "shellHeader": {
+    "routes": {
+      "/": { "title": "首页", "description": "股票分析与历史报告工作台" },
+      "/chat": { "title": "问股", "description": "多轮策略问答与历史会话管理" },
+      "/backtest": { "title": "回测", "description": "回测任务与结果浏览" },
+      "/settings": { "title": "设置", "description": "系统配置、模型与认证管理" },
+      "/portfolio": { "title": "持仓", "description": "组合快照与风险分析" }
+    }
+  },
+  "language": {
+    "toggle": "English",
+    "zh": "中文",
+    "en": "English"
+  },
+  "notFound": {
+    "title": "页面未找到 - DSA",
+    "heading": "页面未找到",
+    "message": "抱歉，您访问的页面不存在或已被移动",
+    "backHome": "返回首页"
+  }
+}

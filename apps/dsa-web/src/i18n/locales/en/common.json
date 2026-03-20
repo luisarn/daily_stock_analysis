@@ -1,0 +1,77 @@
+{
+  "retry": "Retry",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "delete": "Delete",
+  "deleting": "Deleting...",
+  "save": "Save",
+  "close": "Close",
+  "loading": "Loading...",
+  "appName": "DSA",
+  "nav": {
+    "home": "Home",
+    "chat": "Chat",
+    "portfolio": "Portfolio",
+    "backtest": "Backtest",
+    "settings": "Settings",
+    "openMenu": "Open navigation menu",
+    "desktopNav": "Desktop side navigation",
+    "navMenu": "Navigation menu",
+    "mainNav": "Main navigation",
+    "expandSidebar": "Expand sidebar",
+    "collapseSidebar": "Collapse sidebar"
+  },
+  "logout": {
+    "button": "Logout",
+    "title": "Logout",
+    "message": "Are you sure you want to logout? You will need to re-enter your password.",
+    "confirm": "Confirm Logout"
+  },
+  "confirmDialog": {
+    "confirm": "OK",
+    "cancel": "Cancel"
+  },
+  "button": {
+    "processing": "Processing..."
+  },
+  "loadingLabel": "Loading",
+  "selectPlaceholder": "Select...",
+  "passwordToggle": {
+    "hide": "Hide content",
+    "show": "Show content",
+    "hideTitle": "Hide",
+    "showTitle": "Show"
+  },
+  "jsonViewer": {
+    "empty": "No data",
+    "copy": "Copy",
+    "copied": "Copied!"
+  },
+  "drawer": {
+    "closeAriaLabel": "Close drawer"
+  },
+  "apiError": {
+    "dismiss": "Close",
+    "viewDetails": "View details"
+  },
+  "shellHeader": {
+    "routes": {
+      "/": { "title": "Home", "description": "Stock analysis and report workspace" },
+      "/chat": { "title": "Chat", "description": "Multi-turn strategy Q&A and session management" },
+      "/backtest": { "title": "Backtest", "description": "Backtest tasks and results" },
+      "/settings": { "title": "Settings", "description": "System config, models, and auth management" },
+      "/portfolio": { "title": "Portfolio", "description": "Portfolio snapshots and risk analysis" }
+    }
+  },
+  "language": {
+    "toggle": "中文",
+    "zh": "中文",
+    "en": "English"
+  },
+  "notFound": {
+    "title": "Page Not Found - DSA",
+    "heading": "Page Not Found",
+    "message": "Sorry, the page you are looking for does not exist or has been moved.",
+    "backHome": "Back to Home"
+  }
+}
