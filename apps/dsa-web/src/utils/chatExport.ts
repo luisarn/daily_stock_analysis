@@ -1,11 +1,14 @@
+import i18n from '../i18n';
 import type { Message } from '../stores/agentChatStore';
 
 /**
  * Format chat messages as Markdown for export.
  */
 export function formatSessionAsMarkdown(messages: Message[]): string {
+  const t = i18n.t.bind(i18n);
+  const locale = i18n.language.startsWith('zh') ? 'zh-CN' : 'en-US';
   const now = new Date();
-  const timeStr = now.toLocaleString('zh-CN', {
+  const timeStr = now.toLocaleString(locale, {
     year: 'numeric',
     month: '2-digit',
     day: '2-digit',
@@ -14,18 +17,21 @@ export function formatSessionAsMarkdown(messages: Message[]): string {
   });
 
   const lines: string[] = [
-    '# 问股会话',
+    `# ${t('chat:pageHeading')}`,
     '',
-    `生成时间: ${timeStr}`,
+    `${t('chat:exportGeneratedAt', { time: timeStr })}`,
     '',
   ];
 
   for (const msg of messages) {
-    const heading = msg.role === 'user' ? '## 用户' : '## AI';
+    const roleLabel =
+      msg.role === 'user'
+        ? t('chat:exportUserHeading')
+        : t('chat:exportAiHeading');
     if (msg.role === 'assistant' && msg.strategyName) {
-      lines.push(`${heading} (${msg.strategyName})`);
+      lines.push(`## ${roleLabel} (${msg.strategyName})`);
     } else {
-      lines.push(heading);
+      lines.push(`## ${roleLabel}`);
     }
     lines.push('');
     lines.push(msg.content);
@@ -46,7 +52,7 @@ export function downloadSession(messages: Message[]): void {
   const dateStr = now.toISOString().slice(0, 10).replace(/-/g, '');
   const pad = (n: number) => n.toString().padStart(2, '0');
   const timeStr = pad(now.getHours()) + pad(now.getMinutes());
-  const filename = `问股会话_${dateStr}_${timeStr}.md`;
+  const filename = `${i18n.t('chat:pageHeading')}_${dateStr}_${timeStr}.md`;
 
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');

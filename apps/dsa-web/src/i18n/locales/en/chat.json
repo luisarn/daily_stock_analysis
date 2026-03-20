@@ -1,0 +1,65 @@
+{
+  "title": "AI Stock Chat - DSA",
+  "pageHeading": "Stock Chat",
+  "pageSubtitle": "Ask AI for individual stock analysis and get strategy-based trading advice and real-time decision reports.",
+  "quickQuestions": [
+    "Analyze Moutai with Chan Theory",
+    "Wave Theory view on CATL",
+    "Analyze BYD trend",
+    "Box oscillation strategy on SMIC",
+    "Analyze Tencent hk00700",
+    "Sentiment cycle analysis on East Money"
+  ],
+  "input": {
+    "placeholder": "e.g. Analyze 600519 / Is Moutai a good buy now? (Enter to send, Shift+Enter for new line)",
+    "send": "Send"
+  },
+  "strategy": {
+    "label": "Strategy",
+    "generic": "General Analysis",
+    "fallback": "General"
+  },
+  "history": {
+    "title": "Chat History",
+    "newChat": "Start New Chat",
+    "loading": "Loading...",
+    "empty": "No chat history yet",
+    "messageCount": "{{count}} messages",
+    "switchTo": "Switch to chat {{title}}",
+    "delete": "Delete",
+    "mobileTitle": "Chat History"
+  },
+  "thinking": {
+    "summary": "{{toolCount}} tool calls · {{duration}}s",
+    "title": "Thinking Process",
+    "step": "Step {{step}}: Thinking",
+    "generating": "Generating analysis"
+  },
+  "stage": {
+    "connecting": "Connecting...",
+    "thinking": "AI is thinking...",
+    "toolDone": "{{toolName}} done",
+    "generating": "Generating final analysis...",
+    "processing": "Processing..."
+  },
+  "actions": {
+    "export": "Export session as Markdown file",
+    "exportLabel": "Export Session",
+    "send": "Send to configured notification bot/email",
+    "sendSuccess": "Sent to notification channel",
+    "sendFailed": "Send failed"
+  },
+  "emptyState": {
+    "heading": "Start Asking",
+    "description": "Type \"Analyze 600519\" or \"Is Moutai a good buy?\", and AI will call real-time data tools to generate a decision report for you."
+  },
+  "deleteConfirm": {
+    "title": "Delete Chat",
+    "message": "This chat will be permanently deleted. Are you sure?",
+    "confirm": "Delete"
+  },
+  "followUp": "Please analyze {{name}} in depth",
+  "exportGeneratedAt": "Generated at: {{time}}",
+  "exportUserHeading": "User",
+  "exportAiHeading": "AI"
+}

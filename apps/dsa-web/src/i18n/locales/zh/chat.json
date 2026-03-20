@@ -1,0 +1,65 @@
+{
+  "title": "策略问股 - DSA",
+  "pageHeading": "问股",
+  "pageSubtitle": "向 AI 询问个股分析，获取基于策略的交易建议与实时决策报告。",
+  "quickQuestions": [
+    "用缠论分析茅台",
+    "波浪理论看宁德时代",
+    "分析比亚迪趋势",
+    "箱体震荡策略看中芯国际",
+    "分析腾讯 hk00700",
+    "用情绪周期分析东方财富"
+  ],
+  "input": {
+    "placeholder": "例如：分析 600519 / 茅台现在适合买入吗？ (Enter 发送, Shift+Enter 换行)",
+    "send": "发送"
+  },
+  "strategy": {
+    "label": "策略",
+    "generic": "通用分析",
+    "fallback": "通用"
+  },
+  "history": {
+    "title": "历史对话",
+    "newChat": "开启新对话",
+    "loading": "加载中...",
+    "empty": "暂无历史对话",
+    "messageCount": "{{count}} 条对话",
+    "switchTo": "切换到对话 {{title}}",
+    "delete": "删除",
+    "mobileTitle": "历史对话"
+  },
+  "thinking": {
+    "summary": "{{toolCount}} 个工具调用 · {{duration}}s",
+    "title": "思考过程",
+    "step": "第 {{step}} 步：思考",
+    "generating": "生成分析"
+  },
+  "stage": {
+    "connecting": "正在连接...",
+    "thinking": "AI 正在思考...",
+    "toolDone": "{{toolName}} 完成",
+    "generating": "正在生成最终分析...",
+    "processing": "处理中..."
+  },
+  "actions": {
+    "export": "导出会话为 Markdown 文件",
+    "exportLabel": "导出会话",
+    "send": "发送到已配置的通知机器人/邮箱",
+    "sendSuccess": "已发送到通知渠道",
+    "sendFailed": "发送失败"
+  },
+  "emptyState": {
+    "heading": "开始问股",
+    "description": "输入「分析 600519」或「茅台现在能买吗」，AI 将调用实时数据工具为您生成决策报告。"
+  },
+  "deleteConfirm": {
+    "title": "删除对话",
+    "message": "删除后，该对话将不可恢复，确认删除吗？",
+    "confirm": "删除"
+  },
+  "followUp": "请深入分析 {{name}}",
+  "exportGeneratedAt": "生成时间: {{time}}",
+  "exportUserHeading": "用户",
+  "exportAiHeading": "AI"
+}
