@@ -1,5 +1,6 @@
 import type React from 'react';
 import { Menu, PanelLeftClose, PanelLeftOpen } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 import { ThemeToggle } from '../theme/ThemeToggle';
 
@@ -9,20 +10,23 @@ type ShellHeaderProps = {
   onOpenMobileNav: () => void;
 };
 
-const TITLES: Record<string, { title: string; description: string }> = {
-  '/': { title: '首页', description: '股票分析与历史报告工作台' },
-  '/chat': { title: '问股', description: '多轮策略问答与历史会话管理' },
-  '/backtest': { title: '回测', description: '回测任务与结果浏览' },
-  '/settings': { title: '设置', description: '系统配置、模型与认证管理' },
-};
-
 export const ShellHeader: React.FC<ShellHeaderProps> = ({
   collapsed,
   onToggleSidebar,
   onOpenMobileNav,
 }) => {
+  const { t, i18n } = useTranslation('common');
   const location = useLocation();
-  const current = TITLES[location.pathname] ?? { title: 'Daily Stock Analysis', description: 'Web workspace' };
+
+  const routes: Record<string, { title: string; description: string }> = {
+    '/': { title: t('shellHeader.routes./.title'), description: t('shellHeader.routes./.description') },
+    '/chat': { title: t('shellHeader.routes./chat.title'), description: t('shellHeader.routes./chat.description') },
+    '/portfolio': { title: t('shellHeader.routes./portfolio.title'), description: t('shellHeader.routes./portfolio.description') },
+    '/backtest': { title: t('shellHeader.routes./backtest.title'), description: t('shellHeader.routes./backtest.description') },
+    '/settings': { title: t('shellHeader.routes./settings.title'), description: t('shellHeader.routes./settings.description') },
+  };
+
+  const current = routes[location.pathname] ?? { title: 'Daily Stock Analysis', description: 'Web workspace' };
 
   return (
     <header className="sticky top-0 z-30 border-b border-border/60 bg-background/84 backdrop-blur-xl">
@@ -31,7 +35,7 @@ export const ShellHeader: React.FC<ShellHeaderProps> = ({
           type="button"
           onClick={onOpenMobileNav}
           className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border/70 bg-card/70 text-secondary-text transition-colors hover:bg-hover hover:text-foreground lg:hidden"
-          aria-label="打开导航菜单"
+          aria-label={t('nav.openMenu')}
         >
           <Menu className="h-5 w-5" />
         </button>
@@ -40,7 +44,7 @@ export const ShellHeader: React.FC<ShellHeaderProps> = ({
           type="button"
           onClick={onToggleSidebar}
           className="hidden h-10 w-10 items-center justify-center rounded-xl border border-border/70 bg-card/70 text-secondary-text transition-colors hover:bg-hover hover:text-foreground lg:inline-flex"
-          aria-label={collapsed ? '展开侧边栏' : '折叠侧边栏'}
+          aria-label={collapsed ? t('nav.expandSidebar') : t('nav.collapseSidebar')}
         >
           {collapsed ? <PanelLeftOpen className="h-5 w-5" /> : <PanelLeftClose className="h-5 w-5" />}
         </button>
@@ -49,6 +53,14 @@ export const ShellHeader: React.FC<ShellHeaderProps> = ({
           <p className="truncate text-sm font-semibold text-foreground">{current.title}</p>
           <p className="truncate text-xs text-secondary-text">{current.description}</p>
         </div>
+
+        <button
+          type="button"
+          onClick={() => i18n.changeLanguage(i18n.language === 'zh' ? 'en' : 'zh')}
+          className="text-xs text-secondary-text hover:text-foreground transition-colors"
+        >
+          {t('language.toggle')}
+        </button>
 
         <ThemeToggle />
       </div>
