@@ -4,14 +4,16 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 
 import enCommon from './locales/en/common.json';
 import zhCommon from './locales/zh/common.json';
+import enHome from './locales/en/home.json';
+import zhHome from './locales/zh/home.json';
 
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     resources: {
-      en: { common: enCommon },
-      zh: { common: zhCommon },
+      en: { common: enCommon, home: enHome },
+      zh: { common: zhCommon, home: zhHome },
     },
     fallbackLng: 'zh',
     interpolation: { escapeValue: false },

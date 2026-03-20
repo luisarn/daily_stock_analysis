@@ -1,0 +1,31 @@
+{
+  "title": "Daily Stock Analysis - DSA",
+  "placeholder": "Enter stock code, e.g. 600519, 00700, AAPL",
+  "analyze": "Analyze",
+  "analyzing": "Analyzing",
+  "historyTitle": "History",
+  "loadingReport": "Loading report...",
+  "emptyState": {
+    "heading": "Start Analyzing",
+    "description": "Enter a stock code to analyze, or select a report from the history on the left"
+  },
+  "actions": {
+    "askAI": "Ask AI",
+    "detailedReport": "Detailed Report"
+  },
+  "deleteConfirm": {
+    "title": "Delete History",
+    "messageSingle": "Are you sure you want to delete this record? This action cannot be undone.",
+    "messagePlural": "Are you sure you want to delete {{count}} selected records? This action cannot be undone.",
+    "confirm": "Confirm Delete",
+    "confirming": "Deleting..."
+  },
+  "errors": {
+    "analysisFailed": "Analysis failed",
+    "duplicateTask": "Stock {{stockCode}} is already being analyzed, please wait",
+    "validation": {
+      "empty": "Please enter a stock code",
+      "invalid": "Invalid stock code format"
+    }
+  }
+}

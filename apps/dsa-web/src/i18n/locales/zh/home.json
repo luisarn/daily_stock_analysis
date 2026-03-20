@@ -1,0 +1,31 @@
+{
+  "title": "每日选股分析 - DSA",
+  "placeholder": "输入股票代码，如 600519、00700、AAPL",
+  "analyze": "分析",
+  "analyzing": "分析中",
+  "historyTitle": "历史记录",
+  "loadingReport": "加载报告中...",
+  "emptyState": {
+    "heading": "开始分析",
+    "description": "输入股票代码进行分析，或从左侧选择历史报告查看"
+  },
+  "actions": {
+    "askAI": "追问 AI",
+    "detailedReport": "详细报告"
+  },
+  "deleteConfirm": {
+    "title": "删除历史记录",
+    "messageSingle": "确认删除这条历史记录吗？删除后将不可恢复。",
+    "messagePlural": "确认删除选中的 {{count}} 条历史记录吗？删除后将不可恢复。",
+    "confirm": "确认删除",
+    "confirming": "删除中..."
+  },
+  "errors": {
+    "analysisFailed": "分析失败",
+    "duplicateTask": "股票 {{stockCode}} 正在分析中，请等待完成",
+    "validation": {
+      "empty": "请输入股票代码",
+      "invalid": "股票代码格式不正确"
+    }
+  }
+}

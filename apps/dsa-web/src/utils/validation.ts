@@ -1,6 +1,6 @@
 interface ValidationResult {
   valid: boolean;
-  message?: string;
+  messageKey?: string;
   normalized: string;
 }
 
@@ -9,7 +9,7 @@ export const validateStockCode = (value: string): ValidationResult => {
   const normalized = value.trim().toUpperCase();
 
   if (!normalized) {
-    return { valid: false, message: '请输入股票代码', normalized };
+    return { valid: false, messageKey: 'home:errors.validation.empty', normalized };
   }
 
   const patterns = [
@@ -25,7 +25,7 @@ export const validateStockCode = (value: string): ValidationResult => {
 
   return {
     valid,
-    message: valid ? undefined : '股票代码格式不正确',
+    messageKey: valid ? undefined : 'home:errors.validation.invalid',
     normalized,
   };
 };
