@@ -43,6 +43,7 @@ class ChatRequest(BaseModel):
     skills: Optional[List[str]] = None  # Deprecated, use strategies
     strategies: Optional[List[str]] = None  # Trading strategy ids to activate
     context: Optional[Dict[str, Any]] = None  # Previous analysis context for data reuse
+    locale: str = Field(default="zh", description="Language locale: zh or en")
 
     @property
     def effective_strategies(self) -> Optional[List[str]]:
@@ -131,7 +132,7 @@ async def agent_chat(request: ChatRequest):
         result = await loop.run_in_executor(
             None,
             lambda: executor.chat(message=request.message, session_id=session_id,
-                                  context=ctx),
+                                  context=ctx, locale=request.locale),
         )
 
         return ChatResponse(
@@ -276,6 +277,7 @@ async def agent_chat_stream(request: ChatRequest):
                 session_id=session_id,
                 progress_callback=progress_callback,
                 context=stream_ctx,
+                locale=request.locale,
             )
             asyncio.run_coroutine_threadsafe(
                 queue.put({

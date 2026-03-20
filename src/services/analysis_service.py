@@ -36,7 +36,8 @@ class AnalysisService:
         report_type: str = "detailed",
         force_refresh: bool = False,
         query_id: Optional[str] = None,
-        send_notification: bool = True
+        send_notification: bool = True,
+        locale: str = "zh",
     ) -> Optional[Dict[str, Any]]:
         """
         执行股票分析
@@ -47,6 +48,7 @@ class AnalysisService:
             force_refresh: 是否强制刷新
             query_id: 查询 ID（可选）
             send_notification: 是否发送通知（API 触发默认发送）
+            locale: 语言 locale（zh 或 en）
             
         Returns:
             分析结果字典，包含:

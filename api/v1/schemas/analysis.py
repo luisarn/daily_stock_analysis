@@ -50,14 +50,19 @@ class AnalyzeRequest(BaseModel):
         False,
         description="是否使用异步模式"
     )
-    
+    locale: str = Field(
+        "zh",
+        description="Language locale: zh or en"
+    )
+
     class Config:
         json_schema_extra = {
             "example": {
                 "stock_code": "600519",
                 "report_type": "detailed",
                 "force_refresh": False,
-                "async_mode": False
+                "async_mode": False,
+                "locale": "zh"
             }
         }
 

@@ -157,6 +157,7 @@ def trigger_analysis(
     return _handle_async_analysis_batch(stock_codes, request)
 
 
+
 def _handle_async_analysis_batch(
     stock_codes: list,
     request: AnalyzeRequest
@@ -173,6 +174,7 @@ def _handle_async_analysis_batch(
         stock_name=None,
         report_type=request.report_type,
         force_refresh=request.force_refresh,
+        locale=request.locale,
     )
 
     accepted = [
@@ -251,7 +253,8 @@ def _handle_sync_analysis(
             stock_code=stock_code,
             report_type=request.report_type,
             force_refresh=request.force_refresh,
-            query_id=query_id
+            query_id=query_id,
+            locale=request.locale,
         )
 
         if result is None:

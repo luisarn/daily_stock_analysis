@@ -324,7 +324,7 @@ class AgentExecutor:
 
         return self._run_loop(messages, tool_decls, parse_dashboard=True)
 
-    def chat(self, message: str, session_id: str, progress_callback: Optional[Callable] = None, context: Optional[Dict[str, Any]] = None) -> AgentResult:
+    def chat(self, message: str, session_id: str, progress_callback: Optional[Callable] = None, context: Optional[Dict[str, Any]] = None, locale: str = "zh") -> AgentResult:
         """Execute the agent loop for a free-form chat message.
 
         Args:
@@ -332,6 +332,7 @@ class AgentExecutor:
             session_id: The conversation session ID.
             progress_callback: Optional callback for streaming progress events.
             context: Optional context dict from previous analysis for data reuse.
+            locale: Language locale for the response (zh or en).
 
         Returns:
             AgentResult with the text response.

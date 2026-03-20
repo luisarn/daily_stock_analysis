@@ -55,6 +55,7 @@ class TaskInfo:
     result: Optional[Dict[str, Any]] = None
     error: Optional[str] = None
     report_type: str = "detailed"
+    locale: str = "zh"
     created_at: datetime = field(default_factory=datetime.now)
     started_at: Optional[datetime] = None
     completed_at: Optional[datetime] = None
@@ -87,6 +88,7 @@ class TaskInfo:
             result=self.result,
             error=self.error,
             report_type=self.report_type,
+            locale=self.locale,
             created_at=self.created_at,
             started_at=self.started_at,
             completed_at=self.completed_at,
@@ -263,19 +265,21 @@ class AnalysisTaskQueue:
         stock_name: Optional[str] = None,
         report_type: str = "detailed",
         force_refresh: bool = False,
+        locale: str = "zh",
     ) -> TaskInfo:
         """
         提交分析任务
-        
+
         Args:
             stock_code: 股票代码
             stock_name: 股票名称（可选）
             report_type: 报告类型
             force_refresh: 是否强制刷新
-            
+            locale: 语言 locale（zh 或 en）
+
         Returns:
             TaskInfo: 任务信息
-            
+
         Raises:
             DuplicateTaskError: 股票正在分析中
         """
@@ -288,6 +292,7 @@ class AnalysisTaskQueue:
             stock_name=stock_name,
             report_type=report_type,
             force_refresh=force_refresh,
+            locale=locale,
         )
         if duplicates:
             raise duplicates[0]
@@ -299,6 +304,7 @@ class AnalysisTaskQueue:
         stock_name: Optional[str] = None,
         report_type: str = "detailed",
         force_refresh: bool = False,
+        locale: str = "zh",
     ) -> Tuple[List[TaskInfo], List[DuplicateTaskError]]:
         """
         批量提交分析任务。
@@ -330,6 +336,7 @@ class AnalysisTaskQueue:
                     status=TaskStatus.PENDING,
                     message="任务已加入队列",
                     report_type=report_type,
+                    locale=locale,
                 )
                 self._tasks[task_id] = task_info
                 self._analyzing_stocks[stock_code] = task_id
@@ -341,6 +348,7 @@ class AnalysisTaskQueue:
                         stock_code,
                         report_type,
                         force_refresh,
+                        locale,
                     )
                 except Exception:
                     # 回滚当前批次，避免 API 拿不到 task_id 却留下半提交任务。
@@ -443,16 +451,18 @@ class AnalysisTaskQueue:
         stock_code: str,
         report_type: str,
         force_refresh: bool,
+        locale: str = "zh",
     ) -> Optional[Dict[str, Any]]:
         """
         执行分析任务（在线程池中运行）
-        
+
         Args:
             task_id: 任务 ID
             stock_code: 股票代码
             report_type: 报告类型
             force_refresh: 是否强制刷新
-            
+            locale: 语言 locale（zh 或 en）
+
         Returns:
             分析结果字典
         """
@@ -479,6 +489,7 @@ class AnalysisTaskQueue:
                 report_type=report_type,
                 force_refresh=force_refresh,
                 query_id=task_id,
+                locale=locale,
             )
             
             if result:
