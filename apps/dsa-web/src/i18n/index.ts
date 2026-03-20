@@ -6,14 +6,18 @@ import enCommon from './locales/en/common.json';
 import zhCommon from './locales/zh/common.json';
 import enHome from './locales/en/home.json';
 import zhHome from './locales/zh/home.json';
+import enBacktest from './locales/en/backtest.json';
+import zhBacktest from './locales/zh/backtest.json';
+import enLogin from './locales/en/login.json';
+import zhLogin from './locales/zh/login.json';
 
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     resources: {
-      en: { common: enCommon, home: enHome },
-      zh: { common: zhCommon, home: zhHome },
+      en: { common: enCommon, home: enHome, backtest: enBacktest, login: enLogin },
+      zh: { common: zhCommon, home: zhHome, backtest: zhBacktest, login: zhLogin },
     },
     fallbackLng: 'zh',
     interpolation: { escapeValue: false },

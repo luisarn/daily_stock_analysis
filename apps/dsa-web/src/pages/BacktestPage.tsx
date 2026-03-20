@@ -1,5 +1,6 @@
 import type React from 'react';
 import { useState, useEffect, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { backtestApi } from '../api/backtest';
 import type { ParsedApiError } from '../api/error';
 import { getParsedApiError } from '../api/error';
@@ -109,10 +110,12 @@ const RunSummary: React.FC<{ data: BacktestRunResponse }> = ({ data }) => (
 // ============ Main Page ============
 
 const BacktestPage: React.FC = () => {
+  const { t } = useTranslation('backtest');
+
   // Set page title
   useEffect(() => {
-    document.title = '策略回测 - DSA';
-  }, []);
+    document.title = t('title');
+  }, [t]);
 
   // Input state
   const [codeFilter, setCodeFilter] = useState('');
