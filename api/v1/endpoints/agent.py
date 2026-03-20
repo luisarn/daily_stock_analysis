@@ -16,7 +16,7 @@ from pydantic import BaseModel, Field
 from src.config import get_config
 from src.services.agent_model_service import list_agent_model_deployments
 
-# Tool name -> Chinese display name mapping
+# Tool name -> Chinese display name mapping (legacy constant kept for backward compatibility)
 TOOL_DISPLAY_NAMES: Dict[str, str] = {
     "get_realtime_quote":         "获取实时行情",
     "get_daily_history":          "获取历史K线",
@@ -32,6 +32,36 @@ TOOL_DISPLAY_NAMES: Dict[str, str] = {
     "get_market_indices":         "获取市场指数",
     "get_sector_rankings":        "分析行业板块",
 }
+
+_TOOL_DISPLAY_NAMES_EN: Dict[str, str] = {
+    "get_realtime_quote":         "Get Real-time Quote",
+    "get_daily_history":          "Get Historical Data",
+    "get_chip_distribution":      "Analyze Chip Distribution",
+    "get_analysis_context":       "Get Analysis Context",
+    "get_stock_info":             "Get Stock Fundamentals",
+    "search_stock_news":          "Search Stock News",
+    "search_comprehensive_intel": "Search Comprehensive Intel",
+    "analyze_trend":              "Analyze Technical Trend",
+    "calculate_ma":               "Calculate Moving Averages",
+    "get_volume_analysis":        "Analyze Volume",
+    "analyze_pattern":            "Identify Candlestick Pattern",
+    "get_market_indices":         "Get Market Indices",
+    "get_sector_rankings":        "Analyze Sector Rankings",
+}
+
+
+def get_tool_display_names(locale: str = "zh") -> Dict[str, str]:
+    """Return the tool display names dict for the given locale.
+
+    Args:
+        locale: Language locale string (e.g. "zh", "en", "en-US").
+
+    Returns:
+        Dict mapping tool function names to human-readable display labels.
+    """
+    if locale and locale.lower().startswith("en"):
+        return _TOOL_DISPLAY_NAMES_EN
+    return TOOL_DISPLAY_NAMES
 
 logger = logging.getLogger(__name__)
 
@@ -262,11 +292,14 @@ async def agent_chat_stream(request: ChatRequest):
     if strategies:
         stream_ctx["strategies"] = strategies
 
+    _locale = request.locale
+    _display_names = get_tool_display_names(_locale)
+
     def progress_callback(event: dict):
         # Enrich tool events with display names
         if event.get("type") in ("tool_start", "tool_done"):
             tool = event.get("tool", "")
-            event["display_name"] = TOOL_DISPLAY_NAMES.get(tool, tool)
+            event["display_name"] = _display_names.get(tool, tool)
         asyncio.run_coroutine_threadsafe(queue.put(event), loop)
 
     def run_sync():

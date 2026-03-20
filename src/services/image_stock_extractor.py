@@ -53,6 +53,40 @@ EXTRACT_PROMPT = """请分析这张股票市场截图或图片，提取其中所
 
 禁止只返回代码数组如 ["159887","512880"]，必须使用对象格式。若未找到任何股票代码，返回：[]"""
 
+_EXTRACT_PROMPT_EN = """Please analyze this stock market screenshot or image and extract all visible stock codes and names.
+
+Important: If both stock names and codes are shown in the image (e.g., watchlist, ETF list), you must extract both. Each element must include both "code" and "name" fields.
+
+Output format: Return only a valid JSON array; no markdown, no explanation.
+Each element is an object: {"code":"stock code","name":"stock name","confidence":"high|medium|low"}
+- code: Required. Stock code (A-share: 6 digits; HK: 5 digits; US: 1-5 letters; ETF e.g. 159887/512880)
+- name: Required if the name is visible in the image (e.g. Kweichow Moutai, Bank ETF, Securities ETF), paired one-to-one with the code; may be omitted only if the image truly shows no name
+- confidence: Required. Recognition confidence: high=certain, medium=fairly certain, low=uncertain
+
+Examples (when both name and code are visible):
+- A-share: 600519 Kweichow Moutai, 300750 CATL
+- HK: 00700 Tencent Holdings, 09988 Alibaba
+- US: AAPL Apple, TSLA Tesla
+- ETF: 159887 Bank ETF, 512880 Securities ETF, 512000 Broker ETF, 512480 Semiconductor ETF, 515030 NEV ETF
+
+Output example: [{"code":"600519","name":"Kweichow Moutai","confidence":"high"},{"code":"159887","name":"Bank ETF","confidence":"high"}]
+
+Do not return a plain code array like ["159887","512880"]; you must use the object format. If no stock codes are found, return: []"""
+
+
+def build_extract_prompt(locale: str = "zh") -> str:
+    """Return the extract prompt appropriate for the given locale.
+
+    Args:
+        locale: Language locale string (e.g. "zh", "en", "en-US").
+
+    Returns:
+        Extract prompt string in the target language.
+    """
+    if locale and locale.lower().startswith("en"):
+        return _EXTRACT_PROMPT_EN
+    return EXTRACT_PROMPT
+
 # Valid confidence values; invalid ones normalized to medium
 _VALID_CONFIDENCE = frozenset({"high", "medium", "low"})
 
@@ -237,7 +271,7 @@ def _get_api_keys_for_model(model: str, cfg: Config) -> List[str]:
     return [k for k in cfg.openai_api_keys if k and len(k) >= 8]
 
 
-def _call_litellm_vision(image_b64: str, mime_type: str, api_key: Optional[str] = None) -> str:
+def _call_litellm_vision(image_b64: str, mime_type: str, api_key: Optional[str] = None, locale: str = "zh") -> str:
     """Extract stock codes from an image using litellm (all providers via OpenAI vision format)."""
     global litellm
     cfg = get_config()
@@ -250,6 +284,7 @@ def _call_litellm_vision(image_b64: str, mime_type: str, api_key: Optional[str] 
         raise ValueError(f"No API key found for vision model {model}")
     key = api_key if api_key and api_key in keys else random.choice(keys)
 
+    extract_prompt = build_extract_prompt(locale)
     data_url = f"data:{mime_type};base64,{image_b64}"
     call_kwargs: dict = {
         "model": model,
@@ -257,7 +292,7 @@ def _call_litellm_vision(image_b64: str, mime_type: str, api_key: Optional[str] 
             {
                 "role": "user",
                 "content": [
-                    {"type": "text", "text": EXTRACT_PROMPT},
+                    {"type": "text", "text": extract_prompt},
                     {"type": "image_url", "image_url": {"url": data_url}},
                 ],
             }
@@ -285,6 +320,7 @@ def _call_litellm_vision(image_b64: str, mime_type: str, api_key: Optional[str] 
 def extract_stock_codes_from_image(
     image_bytes: bytes,
     mime_type: str,
+    locale: str = "zh",
 ) -> Tuple[List[Tuple[str, Optional[str], str]], str]:
     """
     从图片中提取股票代码及名称（使用 Vision LLM）。
@@ -295,6 +331,7 @@ def extract_stock_codes_from_image(
     Args:
         image_bytes: 原始图片字节
         mime_type: MIME 类型（如 image/jpeg, image/png）
+        locale: Language locale for the prompt (zh or en).
 
     Returns:
         (items, raw_text) - items 为 [(code, name?, confidence), ...]，raw_text 为原始 LLM 响应。
@@ -322,7 +359,7 @@ def extract_stock_codes_from_image(
     for attempt in range(3):
         try:
             key = random.choice(keys) if keys else None
-            raw = _call_litellm_vision(image_b64, mime_type, api_key=key)
+            raw = _call_litellm_vision(image_b64, mime_type, api_key=key, locale=locale)
             logger.debug("[ImageExtractor] raw LLM response:\n%s", raw)
             items = _parse_items_from_text(raw)
             logger.info(
