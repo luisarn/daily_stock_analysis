@@ -1,4 +1,5 @@
 import React, { useId } from 'react';
+import { useTranslation } from 'react-i18next';
 import { cn } from '../../utils/cn';
 
 interface SelectOption {
@@ -29,10 +30,12 @@ export const Select: React.FC<SelectProps> = ({
   onChange,
   options,
   label,
-  placeholder = '请选择',
+  placeholder,
   disabled = false,
   className = '',
 }) => {
+  const { t } = useTranslation('common');
+  const resolvedPlaceholder = placeholder ?? t('selectPlaceholder');
   const selectId = useId();
   const resolvedId = id ?? selectId;
 
@@ -52,9 +55,9 @@ export const Select: React.FC<SelectProps> = ({
             disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
           )}
         >
-          {placeholder && (
+          {resolvedPlaceholder && (
             <option value="" disabled>
-              {placeholder}
+              {resolvedPlaceholder}
             </option>
           )}
           {options.map((option) => (

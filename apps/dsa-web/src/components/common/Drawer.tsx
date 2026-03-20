@@ -1,5 +1,6 @@
 import type React from 'react';
 import { useEffect, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { cn } from '../../utils/cn';
 
 let activeDrawerCount = 0;
@@ -26,6 +27,8 @@ export const Drawer: React.FC<DrawerProps> = ({
   zIndex = 50,
   side = 'right',
 }) => {
+  const { t } = useTranslation('common');
+
   // Close the drawer when Escape is pressed.
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -91,7 +94,7 @@ export const Drawer: React.FC<DrawerProps> = ({
               type="button"
               onClick={onClose}
               className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border/70 bg-card/80 text-secondary-text transition-colors hover:bg-hover hover:text-foreground"
-              aria-label="关闭抽屉"
+              aria-label={t('drawer.closeAriaLabel')}
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

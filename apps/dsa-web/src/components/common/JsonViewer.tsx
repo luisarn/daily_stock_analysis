@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface JsonViewerProps {
   data: Record<string, unknown> | unknown[] | null | undefined;
@@ -15,11 +16,12 @@ export const JsonViewer: React.FC<JsonViewerProps> = ({
   maxHeight = '400px',
   className = '',
 }) => {
+  const { t } = useTranslation('common');
   const [copied, setCopied] = useState(false);
 
   if (!data) {
     return (
-      <div className="text-gray-500 italic py-4 text-center">暂无数据</div>
+      <div className="text-gray-500 italic py-4 text-center">{t('jsonViewer.empty')}</div>
     );
   }
 
@@ -74,7 +76,7 @@ export const JsonViewer: React.FC<JsonViewerProps> = ({
           bg-slate-700 hover:bg-slate-600 text-gray-300
           transition-colors z-10"
       >
-        {copied ? '已复制!' : '复制'}
+        {copied ? t('jsonViewer.copied') : t('jsonViewer.copy')}
       </button>
 
       {/* JSON 内容 */}

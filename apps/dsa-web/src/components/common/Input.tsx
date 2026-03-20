@@ -1,6 +1,7 @@
 import type React from 'react';
 import { useId, useState } from 'react';
 import { Lock, Key } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { cn } from '../../utils/cn';
 import { EyeToggleIcon } from './EyeToggleIcon';
 
@@ -19,19 +20,20 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   onPasswordVisibleChange?: (visible: boolean) => void;
 }
 
-export const Input = ({ 
-  label, 
-  hint, 
-  error, 
-  className = '', 
-  id, 
-  trailingAction, 
+export const Input = ({
+  label,
+  hint,
+  error,
+  className = '',
+  id,
+  trailingAction,
   allowTogglePassword,
   iconType = 'none',
   passwordVisible,
   onPasswordVisibleChange,
-  ...props 
+  ...props
 }: InputProps) => {
+  const { t } = useTranslation('common');
   const generatedId = useId();
   const inputId = id ?? props.name ?? generatedId;
   const hintId = hint ? `${inputId}-hint` : undefined;
@@ -81,9 +83,9 @@ export const Input = ({
         }
         onPasswordVisibleChange?.(nextVisible);
       }}
-      aria-label={visible ? '隐藏内容' : '显示内容'}
+      aria-label={visible ? t('passwordToggle.hide') : t('passwordToggle.show')}
       tabIndex={-1}
-      title={visible ? '隐藏' : '显示'}
+      title={visible ? t('passwordToggle.hideTitle') : t('passwordToggle.showTitle')}
     >
       <EyeToggleIcon visible={visible} />
     </button>

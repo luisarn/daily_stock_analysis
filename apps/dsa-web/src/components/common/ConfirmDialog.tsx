@@ -1,5 +1,6 @@
 import type React from 'react';
 import { createPortal } from 'react-dom';
+import { useTranslation } from 'react-i18next';
 
 interface ConfirmDialogProps {
   isOpen: boolean;
@@ -20,12 +21,15 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
   isOpen,
   title,
   message,
-  confirmText = '确定',
-  cancelText = '取消',
+  confirmText,
+  cancelText,
   isDanger = false,
   onConfirm,
   onCancel,
 }) => {
+  const { t } = useTranslation('common');
+  const resolvedConfirmText = confirmText ?? t('confirmDialog.confirm');
+  const resolvedCancelText = cancelText ?? t('confirmDialog.cancel');
   if (!isOpen) return null;
 
   const dialog = (
@@ -47,7 +51,7 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
             onClick={onCancel}
             className="rounded-lg border border-border/70 px-4 py-2 text-sm font-medium text-secondary-text transition-colors hover:bg-hover hover:text-foreground"
           >
-            {cancelText}
+            {resolvedCancelText}
           </button>
           <button
             type="button"
@@ -58,7 +62,7 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
                 : 'bg-cyan/80 hover:bg-cyan shadow-lg shadow-cyan/20'
             }`}
           >
-            {confirmText}
+            {resolvedConfirmText}
           </button>
         </div>
       </div>

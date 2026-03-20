@@ -1,4 +1,5 @@
 import type React from 'react';
+import { useTranslation } from 'react-i18next';
 import type { ParsedApiError } from '../../api/error';
 
 interface ApiErrorAlertProps {
@@ -15,9 +16,11 @@ export const ApiErrorAlert: React.FC<ApiErrorAlertProps> = ({
   className = '',
   actionLabel,
   onAction,
-  dismissLabel = '关闭',
+  dismissLabel,
   onDismiss,
 }) => {
+  const { t } = useTranslation('common');
+  const resolvedDismissLabel = dismissLabel ?? t('apiError.dismiss');
   const showDetails = error.rawMessage.trim() && error.rawMessage.trim() !== error.message.trim();
 
   return (
@@ -36,13 +39,13 @@ export const ApiErrorAlert: React.FC<ApiErrorAlertProps> = ({
             className="shrink-0 rounded-md border border-white/10 px-2 py-1 text-[11px] text-red-100/85 transition hover:bg-white/5"
             onClick={onDismiss}
           >
-            {dismissLabel}
+            {resolvedDismissLabel}
           </button>
         ) : null}
       </div>
       {showDetails ? (
         <details className="mt-3 rounded-lg border border-white/8 bg-black/15 px-3 py-2">
-          <summary className="cursor-pointer text-xs text-red-100/90">查看详情</summary>
+          <summary className="cursor-pointer text-xs text-red-100/90">{t('apiError.viewDetails')}</summary>
           <pre className="mt-2 whitespace-pre-wrap break-words text-[11px] leading-5 text-red-100/85">
             {error.rawMessage}
           </pre>
