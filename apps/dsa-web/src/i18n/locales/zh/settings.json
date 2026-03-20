@@ -1,0 +1,226 @@
+{
+  "pageTitle": "系统设置",
+  "pageDescription": "统一管理模型、数据源、通知、安全认证与导入能力。",
+  "documentTitle": "系统设置 - DSA",
+  "actions": {
+    "reset": "重置",
+    "save": "保存配置",
+    "saveWithCount": "保存配置 ({{count}})",
+    "saving": "保存中..."
+  },
+  "errors": {
+    "retrySave": "重试保存",
+    "retryLoad": "重试加载",
+    "reload": "重新加载"
+  },
+  "noItems": "当前分类下暂无配置项。",
+  "currentCategoryItems": "当前分类配置项",
+  "currentCategoryDescription": "使用统一字段卡片维护当前分类的系统配置。",
+  "toast": {
+    "success": "操作成功"
+  },
+  "sections": {
+    "intelligentImport": {
+      "title": "智能导入",
+      "description": "从图片、文件或剪贴板中提取股票代码，并合并到自选股列表。"
+    },
+    "llmChannel": {
+      "title": "LLM 渠道与模型",
+      "description": "统一管理渠道协议、基础地址、API Key、主模型与回退模型。"
+    }
+  },
+  "auth": {
+    "sectionTitle": "认证与登录保护",
+    "sectionDescription": "管理管理员密码认证，保护您的系统配置安全。",
+    "statusEnabled": "已启用",
+    "statusDisabled": "未启用",
+    "adminAuth": "管理员认证",
+    "checkboxEnabled": "开启",
+    "checkboxDisabled": "关闭",
+    "helper": {
+      "no_password": "系统尚未设置密码。启用认证前请先设置初始管理员密码，设置后请妥善保管。",
+      "password_retained": "系统已保留之前设置的管理员密码。输入当前密码即可快速重新启用认证。",
+      "enabled_disable": "若当前登录会话仍有效，可直接关闭认证；若会话已失效，请输入当前管理员密码。",
+      "enabled_keep": "管理员认证已启用。如需更新密码，请使用下方的「修改密码」功能。",
+      "default": "管理员认证可保护 Web 设置页及 API 接口，防止未经授权的访问。"
+    },
+    "currentPassword": "当前管理员密码",
+    "currentPasswordPlaceholder": "请输入当前密码",
+    "currentPasswordHintRetained": "输入旧密码以重新激活认证",
+    "currentPasswordHintDisable": "关闭认证前可能需要验证身份",
+    "newPassword": "设置管理员密码",
+    "newPasswordPlaceholder": "输入新密码 (至少 6 位)",
+    "confirmPassword": "确认新密码",
+    "confirmPasswordPlaceholder": "再次输入以确认",
+    "errorTitle": "认证设置失败",
+    "successTitle": "操作成功",
+    "successEnabled": "认证设置已更新",
+    "successDisabled": "认证已关闭",
+    "validationNewPasswordRequired": "设置新密码是必填项",
+    "validationPasswordMismatch": "两次输入的新密码不一致",
+    "actionModeLabels": {
+      "disableAuth": "关闭认证",
+      "enableAuth": "开启认证",
+      "keepEnabled": "保持已开启",
+      "keepDisabled": "保持已关闭"
+    },
+    "revert": "还原"
+  },
+  "changePassword": {
+    "sectionTitle": "修改密码",
+    "sectionDescription": "更新当前管理员登录密码。修改成功后，后续登录请使用新密码。",
+    "currentPassword": "当前密码",
+    "currentPasswordPlaceholder": "输入当前密码",
+    "newPassword": "新密码",
+    "newPasswordHint": "至少 6 位。",
+    "newPasswordPlaceholder": "输入新密码",
+    "confirmPassword": "确认新密码",
+    "confirmPasswordPlaceholder": "再次输入新密码",
+    "submit": "保存新密码",
+    "errorTitle": "修改失败",
+    "successTitle": "修改成功",
+    "successMessage": "管理员密码已更新。",
+    "defaultError": "修改失败",
+    "validationCurrentRequired": "请输入当前密码",
+    "validationNewRequired": "请输入新密码",
+    "validationMinLength": "新密码至少 6 位",
+    "validationMismatch": "两次输入的新密码不一致"
+  },
+  "categoryNav": {
+    "heading": "配置分类",
+    "subheading": "按模块整理系统设置与认证能力。"
+  },
+  "field": {
+    "sensitive": "敏感",
+    "readOnly": "只读",
+    "selectPlaceholder": "请选择",
+    "switchEnabled": "已启用",
+    "switchDisabled": "未启用",
+    "deleteKey": "删除",
+    "addKey": "添加 Key",
+    "sensitiveHint": "敏感内容默认隐藏，可点击眼睛图标查看明文。",
+    "sensitiveHintMulti": " 支持添加多个输入框进行增删。"
+  },
+  "llmChannel": {
+    "aiModelConfig": "AI 模型配置",
+    "channelManagement": "渠道管理",
+    "channelManagementDesc": "添加服务商渠道，填入 API Key 和模型名称即可。配置会自动同步到 .env 文件。",
+    "collapse": "▶ 展开",
+    "expand": "▼ 收起",
+    "quickAdd": {
+      "title": "快速添加渠道",
+      "subtitle": "先选择预设服务商，再一键创建配置草稿。",
+      "addButton": "+ 添加渠道",
+      "selectPlaceholder": "选择服务商"
+    },
+    "channelList": {
+      "heading": "渠道列表",
+      "enabledCount": "{{enabled}}/{{total}} 已启用",
+      "modelsConfigured": "{{count}} 个模型已配置",
+      "noModels": "未配置模型",
+      "testOk": "连接正常",
+      "testFail": "连接失败",
+      "testLoading": "测试中",
+      "noKey": "未填 Key",
+      "deleteTitle": "删除渠道",
+      "empty": "还没有渠道",
+      "emptyHint": "选择服务商预设后点击「添加渠道」即可开始配置。"
+    },
+    "channelForm": {
+      "channelName": "渠道名称",
+      "protocol": "协议",
+      "protocolPlaceholder": "选择协议",
+      "baseUrlPlaceholderOfficial": "官方接口可留空",
+      "baseUrlPlaceholderDefault": "https://api.example.com/v1",
+      "apiKeyPlaceholderOllama": "本地 Ollama 可留空",
+      "apiKeyPlaceholderDefault": "支持多个 Key 逗号分隔",
+      "models": "模型（逗号分隔）",
+      "testButton": "测试连接",
+      "testingButton": "测试中..."
+    },
+    "runtime": {
+      "heading": "运行时参数",
+      "subheading": "主模型、Fallback、Vision 与 Temperature 会直接写入运行时配置。",
+      "temperatureLabel": "Temperature",
+      "temperatureHint": "控制模型输出随机性，0 为确定性输出，2 为最大随机性，推荐 0.7。",
+      "primaryModel": "主模型",
+      "agentPrimaryModel": "Agent 主模型",
+      "fallbackModels": "Fallback 模型",
+      "fallbackHint": "Fallback 只会在主模型失败时使用。主模型不会重复加入 fallback。",
+      "visionModel": "Vision 模型",
+      "noModelsHint": "先添加至少一个已启用渠道并填写模型，下面的主模型 / fallback / Vision 选项才会出现。",
+      "autoFirstAvailable": "自动（使用第一个可用模型）",
+      "autoInherit": "自动（继承普通分析主模型）",
+      "autoVision": "自动（跟随 Vision 默认逻辑）",
+      "currentConfig": "（当前配置）",
+      "litellmConfigWarning": "当前已启用 `LITELLM_CONFIG`，主模型 / fallback / Vision / Temperature 继续在下方通用字段中管理；这里仅保存渠道条目，不会覆盖 YAML 运行时选择。"
+    },
+    "save": {
+      "saveAIConfig": "保存 AI 配置",
+      "saveChannelConfig": "保存渠道配置",
+      "saving": "保存中...",
+      "noChanges": "当前没有未保存的改动"
+    },
+    "validation": {
+      "emptyName": "渠道名称不能为空，且只能包含字母、数字或下划线。",
+      "invalidPrimaryModel": "当前主模型不在已启用渠道的模型列表中，请重新选择。",
+      "invalidAgentModel": "当前 Agent 主模型不在已启用渠道的模型列表中，请重新选择。",
+      "invalidFallbackModel": "存在无效的 fallback 模型，请重新选择。",
+      "invalidVisionModel": "当前 Vision 模型不在已启用渠道的模型列表中，请重新选择。"
+    },
+    "testStatus": {
+      "successPrefix": "连接成功",
+      "fallback": "测试失败",
+      "loading": "测试中..."
+    },
+    "providers": {
+      "aihubmix": "AIHubmix（聚合平台）",
+      "deepseek": "DeepSeek 官方",
+      "dashscope": "通义千问（Dashscope）",
+      "zhipu": "智谱 GLM",
+      "moonshot": "Moonshot（月之暗面）",
+      "siliconflow": "硅基流动（SiliconFlow）",
+      "openrouter": "OpenRouter",
+      "gemini": "Gemini 官方",
+      "anthropic": "Anthropic 官方",
+      "openai": "OpenAI 官方",
+      "ollama": "Ollama（本地）",
+      "custom": "自定义渠道"
+    }
+  },
+  "import": {
+    "supportTitle": "支持图片、CSV/Excel 文件与剪贴板文本",
+    "supportDesc": "图片识别需预先配置 Vision 模型。建议先人工核对解析结果，再合并到自选股。",
+    "selectImage": "选择图片",
+    "selectFile": "选择文件",
+    "pastePlaceholder": "或粘贴 CSV/Excel 复制的文本...",
+    "parseButton": "解析",
+    "processing": "处理中...",
+    "reviewWarning": "建议人工逐条核对后再合并。高置信度默认勾选，中/低置信度需手动确认。",
+    "summary": "共 {{valid}} 条可合并，已勾选 {{checked}} 条",
+    "selectAll": "全选",
+    "deselectAll": "取消",
+    "clearAll": "清空",
+    "mergeButton": "合并到自选股",
+    "merging": "保存中...",
+    "parseFailed": "解析失败",
+    "confidence": {
+      "high": "高",
+      "medium": "中",
+      "low": "低"
+    },
+    "errors": {
+      "imageFormat": "图片仅支持 JPG、PNG、WebP、GIF",
+      "imageTooLarge": "图片不超过 5MB",
+      "fileTooLarge": "文件不超过 2MB",
+      "textTooLarge": "粘贴文本不超过 100KB",
+      "recognitionFailed": "识别失败，请重试",
+      "rateLimited": "请求过于频繁，请稍后再试",
+      "timeout": "请求超时，请检查网络后重试",
+      "parseFailed": "解析失败",
+      "noConfig": "请先加载配置后再合并",
+      "mergeConflict": "配置已更新，请再次点击「合并到自选股」",
+      "mergeFailed": "合并保存失败"
+    }
+  }
+}

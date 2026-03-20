@@ -1,4 +1,5 @@
 import type React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Badge } from '../common';
 import { getCategoryDescriptionZh, getCategoryTitleZh } from '../../utils/systemConfigI18n';
 import type { SystemConfigCategorySchema, SystemConfigItem } from '../../types/systemConfig';
@@ -17,11 +18,13 @@ export const SettingsCategoryNav: React.FC<SettingsCategoryNavProps> = ({
   activeCategory,
   onSelect,
 }) => {
+  const { t } = useTranslation('settings');
+
   return (
     <div className="h-full rounded-[1.5rem] border border-white/10 bg-card p-4 shadow-soft-card-strong">
       <div className="mb-4">
-        <p className="text-xs uppercase tracking-[0.3em] text-cyan font-semibold">配置分类</p>
-        <p className="mt-1 text-[11px] leading-relaxed text-muted-text">按模块整理系统设置与认证能力。</p>
+        <p className="text-xs uppercase tracking-[0.3em] text-cyan font-semibold">{t('categoryNav.heading')}</p>
+        <p className="mt-1 text-[11px] leading-relaxed text-muted-text">{t('categoryNav.subheading')}</p>
       </div>
 
       <div className="space-y-2.5">

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Badge, Select, Input } from '../common';
 import type { ConfigValidationIssue, SystemConfigFieldSchema, SystemConfigItem } from '../../types/systemConfig';
 import { getFieldDescriptionZh, getFieldTitleZh } from '../../utils/systemConfigI18n';
@@ -53,6 +54,7 @@ function renderFieldControl(
   isPasswordEditable: boolean,
   onPasswordFocus: () => void,
   controlId: string,
+  t: (key: string) => string,
 ) {
   const schema = item.schema;
   const commonClass = 'input-terminal border-border/55 bg-card/94 hover:border-border/75';
@@ -79,7 +81,7 @@ function renderFieldControl(
           onChange={onChange}
           options={normalizeSelectOptions(schema.options)}
           disabled={disabled || !schema.isEditable}
-          placeholder="请选择"
+          placeholder={t('field.selectPlaceholder')}
         />
       );
   }
@@ -95,7 +97,7 @@ function renderFieldControl(
           disabled={disabled || !schema?.isEditable}
           onChange={(event) => onChange(event.target.checked ? 'true' : 'false')}
         />
-        <span className="text-sm text-secondary-text">{checked ? '已启用' : '未启用'}</span>
+        <span className="text-sm text-secondary-text">{checked ? t('field.switchEnabled') : t('field.switchDisabled')}</span>
       </label>
     );
   }
@@ -136,7 +138,7 @@ function renderFieldControl(
                   onChange(serializeMultiValues(nextValues.length ? nextValues : ['']));
                 }}
               >
-                删除
+                {t('field.deleteKey')}
               </button>
             </div>
           ))}
@@ -148,7 +150,7 @@ function renderFieldControl(
               disabled={disabled || !schema?.isEditable}
               onClick={() => onChange(serializeMultiValues([...values, '']))}
             >
-              添加 Key
+              {t('field.addKey')}
             </button>
           </div>
         </div>
@@ -191,6 +193,7 @@ export const SettingsField: React.FC<SettingsFieldProps> = ({
   onChange,
   issues = [],
 }) => {
+  const { t } = useTranslation('settings');
   const schema = item.schema;
   const isMultiValue = isMultiValueField(item);
   const title = getFieldTitleZh(item.key, item.key);
@@ -212,12 +215,12 @@ export const SettingsField: React.FC<SettingsFieldProps> = ({
         </label>
         {schema?.isSensitive ? (
           <Badge variant="history" size="sm">
-            敏感
+            {t('field.sensitive')}
           </Badge>
         ) : null}
         {!schema?.isEditable ? (
           <Badge variant="default" size="sm">
-            只读
+            {t('field.readOnly')}
           </Badge>
         ) : null}
       </div>
@@ -237,13 +240,14 @@ export const SettingsField: React.FC<SettingsFieldProps> = ({
           isPasswordEditable,
           () => setIsPasswordEditable(true),
           controlId,
+          t,
         )}
       </div>
 
       {schema?.isSensitive ? (
         <p className="mt-3 text-[11px] leading-5 text-secondary-text">
-          敏感内容默认隐藏，可点击眼睛图标查看明文。
-          {isMultiValue ? ' 支持添加多个输入框进行增删。' : ''}
+          {t('field.sensitiveHint')}
+          {isMultiValue ? t('field.sensitiveHintMulti') : ''}
         </p>
       ) : null}
 

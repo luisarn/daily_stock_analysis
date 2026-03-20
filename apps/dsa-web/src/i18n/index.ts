@@ -10,14 +10,16 @@ import enBacktest from './locales/en/backtest.json';
 import zhBacktest from './locales/zh/backtest.json';
 import enLogin from './locales/en/login.json';
 import zhLogin from './locales/zh/login.json';
+import enSettings from './locales/en/settings.json';
+import zhSettings from './locales/zh/settings.json';
 
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     resources: {
-      en: { common: enCommon, home: enHome, backtest: enBacktest, login: enLogin },
-      zh: { common: zhCommon, home: zhHome, backtest: zhBacktest, login: zhLogin },
+      en: { common: enCommon, home: enHome, backtest: enBacktest, login: enLogin, settings: enSettings },
+      zh: { common: zhCommon, home: zhHome, backtest: zhBacktest, login: zhLogin, settings: zhSettings },
     },
     fallbackLng: 'zh',
     interpolation: { escapeValue: false },

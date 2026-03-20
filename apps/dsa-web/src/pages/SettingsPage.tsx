@@ -1,5 +1,6 @@
 import type React from 'react';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useAuth, useSystemConfig } from '../hooks';
 import { ApiErrorAlert, Button } from '../components/common';
 import {
@@ -17,12 +18,13 @@ import { getCategoryDescriptionZh } from '../utils/systemConfigI18n';
 import type { SystemConfigCategory } from '../types/systemConfig';
 
 const SettingsPage: React.FC = () => {
+  const { t } = useTranslation('settings');
   const { passwordChangeable } = useAuth();
 
   // Set page title
   useEffect(() => {
-    document.title = '系统设置 - DSA';
-  }, []);
+    document.title = t('documentTitle');
+  }, [t]);
 
   const {
     categories,
@@ -125,9 +127,9 @@ const SettingsPage: React.FC = () => {
       <div className="mb-5 rounded-xl bg-card/50 px-5 py-5 shadow-soft-card-strong">
         <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           <div>
-            <h1 className="text-xl font-semibold tracking-tight text-foreground">系统设置</h1>
+            <h1 className="text-xl font-semibold tracking-tight text-foreground">{t('pageTitle')}</h1>
             <p className="text-xs leading-6 text-muted-text">
-              统一管理模型、数据源、通知、安全认证与导入能力。
+              {t('pageDescription')}
             </p>
           </div>
 
@@ -138,7 +140,7 @@ const SettingsPage: React.FC = () => {
               onClick={resetDraft}
               disabled={isLoading || isSaving}
             >
-              重置
+              {t('actions.reset')}
             </Button>
             <Button
               type="button"
@@ -146,9 +148,9 @@ const SettingsPage: React.FC = () => {
               onClick={() => void save()}
               disabled={!hasDirty || isSaving || isLoading}
               isLoading={isSaving}
-              loadingText="保存中..."
+              loadingText={t('actions.saving')}
             >
-              {isSaving ? '保存中...' : `保存配置${dirtyCount ? ` (${dirtyCount})` : ''}`}
+              {isSaving ? t('actions.saving') : (dirtyCount ? t('actions.saveWithCount', { count: dirtyCount }) : t('actions.save'))}
             </Button>
           </div>
         </div>
@@ -157,7 +159,7 @@ const SettingsPage: React.FC = () => {
           <ApiErrorAlert
             className="mt-3"
             error={saveError}
-            actionLabel={retryAction === 'save' ? '重试保存' : undefined}
+            actionLabel={retryAction === 'save' ? t('errors.retrySave') : undefined}
             onAction={retryAction === 'save' ? () => void retry() : undefined}
           />
         ) : null}
@@ -166,7 +168,7 @@ const SettingsPage: React.FC = () => {
       {loadError ? (
         <ApiErrorAlert
           error={loadError}
-          actionLabel={retryAction === 'load' ? '重试加载' : '重新加载'}
+          actionLabel={retryAction === 'load' ? t('errors.retryLoad') : t('errors.reload')}
           onAction={() => void retry()}
           className="mb-4"
         />
@@ -189,8 +191,8 @@ const SettingsPage: React.FC = () => {
             {activeCategory === 'system' ? <AuthSettingsCard /> : null}
             {activeCategory === 'base' ? (
               <SettingsSectionCard
-                title="智能导入"
-                description="从图片、文件或剪贴板中提取股票代码，并合并到自选股列表。"
+                title={t('sections.intelligentImport.title')}
+                description={t('sections.intelligentImport.description')}
               >
                 <IntelligentImport
                   stockListValue={
@@ -207,8 +209,8 @@ const SettingsPage: React.FC = () => {
             ) : null}
             {activeCategory === 'ai_model' ? (
               <SettingsSectionCard
-                title="LLM 渠道与模型"
-                description="统一管理渠道协议、基础地址、API Key、主模型与回退模型。"
+                title={t('sections.llmChannel.title')}
+                description={t('sections.llmChannel.description')}
               >
                 <LLMChannelEditor
                   items={rawActiveItems}
@@ -226,8 +228,8 @@ const SettingsPage: React.FC = () => {
             ) : null}
             {activeItems.length ? (
               <SettingsSectionCard
-                title="当前分类配置项"
-                description={getCategoryDescriptionZh(activeCategory as SystemConfigCategory, '') || '使用统一字段卡片维护当前分类的系统配置。'}
+                title={t('currentCategoryItems')}
+                description={getCategoryDescriptionZh(activeCategory as SystemConfigCategory, '') || t('currentCategoryDescription')}
               >
                 {activeItems.map((item) => (
                   <SettingsField
@@ -242,7 +244,7 @@ const SettingsPage: React.FC = () => {
               </SettingsSectionCard>
             ) : (
               <div className="rounded-[1.5rem] border border-border/45 bg-card/92 p-5 text-sm text-secondary-text shadow-soft-card">
-                当前分类下暂无配置项。
+                {t('noItems')}
               </div>
             )}
           </section>
@@ -252,7 +254,7 @@ const SettingsPage: React.FC = () => {
       {toast ? (
         <div className="fixed bottom-5 right-5 z-50 w-[320px] max-w-[calc(100vw-24px)]">
           {toast.type === 'success'
-            ? <SettingsAlert title="操作成功" message={toast.message} variant="success" />
+            ? <SettingsAlert title={t('toast.success')} message={toast.message} variant="success" />
             : <ApiErrorAlert error={toast.error} />}
         </div>
       ) : null}

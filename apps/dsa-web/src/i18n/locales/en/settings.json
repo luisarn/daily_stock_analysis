@@ -1,0 +1,226 @@
+{
+  "pageTitle": "System Settings",
+  "pageDescription": "Manage models, data sources, notifications, authentication, and import capabilities.",
+  "documentTitle": "System Settings - DSA",
+  "actions": {
+    "reset": "Reset",
+    "save": "Save Settings",
+    "saveWithCount": "Save Settings ({{count}})",
+    "saving": "Saving..."
+  },
+  "errors": {
+    "retrySave": "Retry Save",
+    "retryLoad": "Retry Load",
+    "reload": "Reload"
+  },
+  "noItems": "No configuration items in this category.",
+  "currentCategoryItems": "Current Category Items",
+  "currentCategoryDescription": "Manage system configuration for this category using the field cards below.",
+  "toast": {
+    "success": "Operation Successful"
+  },
+  "sections": {
+    "intelligentImport": {
+      "title": "Intelligent Import",
+      "description": "Extract stock codes from images, files, or clipboard and merge them into your watchlist."
+    },
+    "llmChannel": {
+      "title": "LLM Channels & Models",
+      "description": "Manage channel protocols, base URLs, API keys, primary models, and fallback models."
+    }
+  },
+  "auth": {
+    "sectionTitle": "Authentication & Login Protection",
+    "sectionDescription": "Manage administrator password authentication to protect your system configuration.",
+    "statusEnabled": "Enabled",
+    "statusDisabled": "Disabled",
+    "adminAuth": "Admin Authentication",
+    "checkboxEnabled": "On",
+    "checkboxDisabled": "Off",
+    "helper": {
+      "no_password": "No password has been set. Please set an initial administrator password before enabling authentication, and keep it safe.",
+      "password_retained": "The system has retained a previously set administrator password. Enter the current password to quickly re-enable authentication.",
+      "enabled_disable": "If the current login session is still valid, you can disable authentication directly; otherwise, enter the current administrator password.",
+      "enabled_keep": "Admin authentication is enabled. To update the password, use the \"Change Password\" section below.",
+      "default": "Admin authentication protects the web settings page and API endpoints from unauthorized access."
+    },
+    "currentPassword": "Current Admin Password",
+    "currentPasswordPlaceholder": "Enter current password",
+    "currentPasswordHintRetained": "Enter old password to reactivate authentication",
+    "currentPasswordHintDisable": "Identity verification may be required before disabling authentication",
+    "newPassword": "Set Admin Password",
+    "newPasswordPlaceholder": "Enter new password (at least 6 characters)",
+    "confirmPassword": "Confirm New Password",
+    "confirmPasswordPlaceholder": "Enter new password again",
+    "errorTitle": "Authentication Settings Failed",
+    "successTitle": "Operation Successful",
+    "successEnabled": "Authentication settings updated",
+    "successDisabled": "Authentication disabled",
+    "validationNewPasswordRequired": "New password is required",
+    "validationPasswordMismatch": "New passwords do not match",
+    "actionModeLabels": {
+      "disableAuth": "Disable Auth",
+      "enableAuth": "Enable Auth",
+      "keepEnabled": "Keep Enabled",
+      "keepDisabled": "Keep Disabled"
+    },
+    "revert": "Revert"
+  },
+  "changePassword": {
+    "sectionTitle": "Change Password",
+    "sectionDescription": "Update the current administrator login password. After a successful change, use the new password for subsequent logins.",
+    "currentPassword": "Current Password",
+    "currentPasswordPlaceholder": "Enter current password",
+    "newPassword": "New Password",
+    "newPasswordHint": "At least 6 characters.",
+    "newPasswordPlaceholder": "Enter new password",
+    "confirmPassword": "Confirm New Password",
+    "confirmPasswordPlaceholder": "Enter new password again",
+    "submit": "Save New Password",
+    "errorTitle": "Change Failed",
+    "successTitle": "Change Successful",
+    "successMessage": "Administrator password has been updated.",
+    "defaultError": "Change failed",
+    "validationCurrentRequired": "Please enter your current password",
+    "validationNewRequired": "Please enter a new password",
+    "validationMinLength": "New password must be at least 6 characters",
+    "validationMismatch": "New passwords do not match"
+  },
+  "categoryNav": {
+    "heading": "Categories",
+    "subheading": "Browse system settings and authentication by module."
+  },
+  "field": {
+    "sensitive": "Sensitive",
+    "readOnly": "Read-only",
+    "selectPlaceholder": "Select",
+    "switchEnabled": "Enabled",
+    "switchDisabled": "Disabled",
+    "deleteKey": "Delete",
+    "addKey": "Add Key",
+    "sensitiveHint": "Sensitive content is hidden by default. Click the eye icon to reveal.",
+    "sensitiveHintMulti": " Multiple entries can be added or removed."
+  },
+  "llmChannel": {
+    "aiModelConfig": "AI Model Configuration",
+    "channelManagement": "Channel Management",
+    "channelManagementDesc": "Add provider channels, enter API Keys and model names. Configuration is automatically synced to the .env file.",
+    "collapse": "▶ Expand",
+    "expand": "▼ Collapse",
+    "quickAdd": {
+      "title": "Quick Add Channel",
+      "subtitle": "Select a provider preset, then create a configuration draft with one click.",
+      "addButton": "+ Add Channel",
+      "selectPlaceholder": "Select provider"
+    },
+    "channelList": {
+      "heading": "Channel List",
+      "enabledCount": "{{enabled}}/{{total}} enabled",
+      "modelsConfigured": "{{count}} model(s) configured",
+      "noModels": "No models configured",
+      "testOk": "Connection OK",
+      "testFail": "Connection Failed",
+      "testLoading": "Testing",
+      "noKey": "No Key",
+      "deleteTitle": "Remove channel",
+      "empty": "No channels yet",
+      "emptyHint": "Select a provider preset and click \"Add Channel\" to get started."
+    },
+    "channelForm": {
+      "channelName": "Channel Name",
+      "protocol": "Protocol",
+      "protocolPlaceholder": "Select protocol",
+      "baseUrlPlaceholderOfficial": "Leave empty for official endpoint",
+      "baseUrlPlaceholderDefault": "https://api.example.com/v1",
+      "apiKeyPlaceholderOllama": "Leave empty for local Ollama",
+      "apiKeyPlaceholderDefault": "Multiple keys supported, comma-separated",
+      "models": "Models (comma-separated)",
+      "testButton": "Test Connection",
+      "testingButton": "Testing..."
+    },
+    "runtime": {
+      "heading": "Runtime Parameters",
+      "subheading": "Primary model, Fallback, Vision, and Temperature are written directly to the runtime configuration.",
+      "temperatureLabel": "Temperature",
+      "temperatureHint": "Controls output randomness. 0 = deterministic, 2 = maximum randomness. Recommended: 0.7.",
+      "primaryModel": "Primary Model",
+      "agentPrimaryModel": "Agent Primary Model",
+      "fallbackModels": "Fallback Models",
+      "fallbackHint": "Fallback is only used when the primary model fails. The primary model is excluded from fallback.",
+      "visionModel": "Vision Model",
+      "noModelsHint": "Add at least one enabled channel with models to see primary model / fallback / Vision options.",
+      "autoFirstAvailable": "Auto (use first available model)",
+      "autoInherit": "Auto (inherit from primary analysis model)",
+      "autoVision": "Auto (follow default Vision logic)",
+      "currentConfig": "(current config)",
+      "litellmConfigWarning": "`LITELLM_CONFIG` is enabled. Primary model / fallback / Vision / Temperature are managed in the general fields below; only channel entries are saved here without overwriting YAML runtime selection."
+    },
+    "save": {
+      "saveAIConfig": "Save AI Config",
+      "saveChannelConfig": "Save Channel Config",
+      "saving": "Saving...",
+      "noChanges": "No unsaved changes"
+    },
+    "validation": {
+      "emptyName": "Channel name cannot be empty and may only contain letters, numbers, or underscores.",
+      "invalidPrimaryModel": "The selected primary model is not in the enabled channels' model list. Please reselect.",
+      "invalidAgentModel": "The selected Agent primary model is not in the enabled channels' model list. Please reselect.",
+      "invalidFallbackModel": "One or more fallback models are invalid. Please reselect.",
+      "invalidVisionModel": "The selected Vision model is not in the enabled channels' model list. Please reselect."
+    },
+    "testStatus": {
+      "successPrefix": "Connection successful",
+      "fallback": "Test failed",
+      "loading": "Testing..."
+    },
+    "providers": {
+      "aihubmix": "AIHubmix (Aggregator)",
+      "deepseek": "DeepSeek Official",
+      "dashscope": "Qwen (Dashscope)",
+      "zhipu": "Zhipu GLM",
+      "moonshot": "Moonshot",
+      "siliconflow": "SiliconFlow",
+      "openrouter": "OpenRouter",
+      "gemini": "Gemini Official",
+      "anthropic": "Anthropic Official",
+      "openai": "OpenAI Official",
+      "ollama": "Ollama (Local)",
+      "custom": "Custom Channel"
+    }
+  },
+  "import": {
+    "supportTitle": "Supports images, CSV/Excel files, and clipboard text",
+    "supportDesc": "Image recognition requires a Vision model to be configured. Review results before merging into watchlist.",
+    "selectImage": "Select Image",
+    "selectFile": "Select File",
+    "pastePlaceholder": "Or paste CSV/Excel copied text...",
+    "parseButton": "Parse",
+    "processing": "Processing...",
+    "reviewWarning": "Review each item before merging. High confidence items are pre-selected; medium/low confidence requires manual confirmation.",
+    "summary": "{{valid}} item(s) available, {{checked}} selected",
+    "selectAll": "Select All",
+    "deselectAll": "Deselect",
+    "clearAll": "Clear",
+    "mergeButton": "Merge to Watchlist",
+    "merging": "Saving...",
+    "parseFailed": "Parse failed",
+    "confidence": {
+      "high": "High",
+      "medium": "Med",
+      "low": "Low"
+    },
+    "errors": {
+      "imageFormat": "Only JPG, PNG, WebP, GIF images are supported",
+      "imageTooLarge": "Image must not exceed 5MB",
+      "fileTooLarge": "File must not exceed 2MB",
+      "textTooLarge": "Pasted text must not exceed 100KB",
+      "recognitionFailed": "Recognition failed, please try again",
+      "rateLimited": "Too many requests, please try again later",
+      "timeout": "Request timed out, please check your network",
+      "parseFailed": "Parse failed",
+      "noConfig": "Please load configuration before merging",
+      "mergeConflict": "Configuration updated. Click \"Merge to Watchlist\" again to proceed.",
+      "mergeFailed": "Merge save failed"
+    }
+  }
+}
