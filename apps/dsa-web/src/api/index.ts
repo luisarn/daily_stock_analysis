@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { API_BASE_URL } from '../utils/constants';
 import { attachParsedApiError } from './error';
+import i18n from '../i18n';
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
@@ -9,6 +10,11 @@ const apiClient = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+});
+
+apiClient.interceptors.request.use((config) => {
+  config.headers['X-Locale'] = i18n.language || 'zh';
+  return config;
 });
 
 apiClient.interceptors.response.use(

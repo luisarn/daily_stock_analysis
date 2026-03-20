@@ -1,6 +1,7 @@
 import apiClient from './index';
 import { API_BASE_URL } from '../utils/constants';
 import { createApiError, isApiRequestError, parseApiError } from './error';
+import i18n from '../i18n';
 
 export interface ChatStreamOptions {
   signal?: AbortSignal;
@@ -91,7 +92,10 @@ export const agentApi = {
     try {
       const response = await fetch(url, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Locale': i18n.language || 'zh',
+        },
         body: JSON.stringify(payload),
         credentials: 'include',
         signal: options?.signal,
