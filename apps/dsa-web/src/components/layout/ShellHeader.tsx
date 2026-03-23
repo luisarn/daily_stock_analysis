@@ -57,8 +57,10 @@ export const ShellHeader: React.FC<ShellHeaderProps> = ({
         <button
           type="button"
           onClick={() => i18n.changeLanguage(i18n.language === 'zh' ? 'en' : 'zh')}
-          className="text-xs text-secondary-text hover:text-foreground transition-colors"
+          className="inline-flex h-9 items-center justify-center rounded-lg border border-border/70 bg-card/70 px-3 text-xs font-medium text-secondary-text transition-colors hover:bg-hover hover:text-foreground"
+          title={i18n.language === 'zh' ? 'Switch to English' : '切换到中文'}
         >
+          <span className="mr-1.5 text-base">{i18n.language === 'zh' ? '🇺🇸' : '🇨🇳'}</span>
           {t('language.toggle')}
         </button>
 
