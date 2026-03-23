@@ -22,7 +22,7 @@ import logging
 from datetime import datetime
 from typing import Optional, Union, Dict, Any
 
-from fastapi import APIRouter, HTTPException, Depends, Query
+from fastapi import APIRouter, HTTPException, Depends, Query, Header
 from fastapi.responses import JSONResponse, StreamingResponse
 
 from api.deps import get_config_dep
@@ -86,8 +86,11 @@ router = APIRouter()
 )
 def trigger_analysis(
         request: AnalyzeRequest,
-        config: Config = Depends(get_config_dep)
+        config: Config = Depends(get_config_dep),
+        x_locale: Optional[str] = Header(default="zh", alias="X-Locale")
 ) -> Union[AnalysisResultResponse, JSONResponse]:
+    # Use header locale if request body locale is default (zh)
+    effective_locale = x_locale if x_locale else (request.locale or "zh")
     """
     触发股票分析
     
@@ -151,16 +154,17 @@ def trigger_analysis(
                     "message": "同步模式仅支持单只股票分析，请使用 async_mode=true 进行批量分析"
                 }
             )
-        return _handle_sync_analysis(stock_codes[0], request)
+        return _handle_sync_analysis(stock_codes[0], request, effective_locale)
 
     # 异步模式：为每只股票提交任务
-    return _handle_async_analysis_batch(stock_codes, request)
+    return _handle_async_analysis_batch(stock_codes, request, effective_locale)
 
 
 
 def _handle_async_analysis_batch(
     stock_codes: list,
-    request: AnalyzeRequest
+    request: AnalyzeRequest,
+    locale: str = "zh"
 ) -> JSONResponse:
     """
     处理异步分析请求（支持批量）
@@ -174,7 +178,7 @@ def _handle_async_analysis_batch(
         stock_name=None,
         report_type=request.report_type,
         force_refresh=request.force_refresh,
-        locale=request.locale,
+        locale=locale,
     )
 
     accepted = [
@@ -235,18 +239,19 @@ def _handle_async_analysis_batch(
 
 def _handle_sync_analysis(
     stock_code: str,
-    request: AnalyzeRequest
+    request: AnalyzeRequest,
+    locale: str = "zh"
 ) -> AnalysisResultResponse:
     """
     处理同步分析请求
-    
+
     直接执行分析，等待完成后返回结果
     """
     import uuid
     from src.services.analysis_service import AnalysisService
-    
+
     query_id = uuid.uuid4().hex
-    
+
     try:
         service = AnalysisService()
         result = service.analyze_stock(
@@ -254,7 +259,7 @@ def _handle_sync_analysis(
             report_type=request.report_type,
             force_refresh=request.force_refresh,
             query_id=query_id,
-            locale=request.locale,
+            locale=locale,
         )
 
         if result is None:

@@ -9,7 +9,7 @@ import logging
 import uuid
 from typing import Any, Dict, List, Optional
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Header
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 
@@ -135,17 +135,21 @@ async def get_strategies():
     return StrategiesResponse(strategies=strategies)
 
 @router.post("/chat", response_model=ChatResponse)
-async def agent_chat(request: ChatRequest):
+async def agent_chat(
+    request: ChatRequest,
+    x_locale: Optional[str] = Header(default="zh", alias="X-Locale")
+):
     """
     Chat with the AI Agent.
     """
     config = get_config()
-    
+
     if not config.is_agent_available():
         raise HTTPException(status_code=400, detail="Agent mode is not enabled")
-        
+
     session_id = request.session_id or str(uuid.uuid4())
-    
+    effective_locale = x_locale if x_locale else (request.locale or "zh")
+
     try:
         strategies = request.effective_strategies
         executor = _build_executor(config, strategies)
@@ -162,7 +166,7 @@ async def agent_chat(request: ChatRequest):
         result = await loop.run_in_executor(
             None,
             lambda: executor.chat(message=request.message, session_id=session_id,
-                                  context=ctx, locale=request.locale),
+                                  context=ctx, locale=effective_locale),
         )
 
         return ChatResponse(
@@ -266,7 +270,10 @@ def _build_executor(config, strategies: Optional[List[str]] = None):
 
 
 @router.post("/chat/stream")
-async def agent_chat_stream(request: ChatRequest):
+async def agent_chat_stream(
+    request: ChatRequest,
+    x_locale: Optional[str] = Header(default="zh", alias="X-Locale")
+):
     """
     Chat with the AI Agent, streaming progress via SSE.
     Each SSE event is a JSON object with a 'type' field:
@@ -285,6 +292,9 @@ async def agent_chat_stream(request: ChatRequest):
     loop = asyncio.get_running_loop()
     queue: asyncio.Queue = asyncio.Queue()
 
+    # Use header locale if available, otherwise fall back to request body
+    effective_locale = x_locale if x_locale else (request.locale or "zh")
+
     # Pass explicit strategies into context for the orchestrator.
     # Direct assignment so caller-provided strategies always take precedence.
     strategies = request.effective_strategies
@@ -292,7 +302,7 @@ async def agent_chat_stream(request: ChatRequest):
     if strategies:
         stream_ctx["strategies"] = strategies
 
-    _locale = request.locale
+    _locale = effective_locale
     _display_names = get_tool_display_names(_locale)
 
     def progress_callback(event: dict):
@@ -310,7 +320,7 @@ async def agent_chat_stream(request: ChatRequest):
                 session_id=session_id,
                 progress_callback=progress_callback,
                 context=stream_ctx,
-                locale=request.locale,
+                locale=_locale,
             )
             asyncio.run_coroutine_threadsafe(
                 queue.put({
